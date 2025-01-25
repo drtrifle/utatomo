@@ -1,0 +1,24 @@
+[
+    {
+      "id": "A-001",
+      "title": "Song One",
+      "artist": "Artist A",
+      "youtubeUrl": "https://www.youtube.com/watch?v=V5M2WZiAy6k",
+      "duration": "3:45"
+    },
+    {
+      "id": "B-001",
+      "title": "Song Two",
+      "artist": "Artist B",
+      "youtubeUrl": "https://www.youtube.com/watch?v=V5M2WZiAy6k",
+      "duration": "4:20"
+    },
+    {
+      "id": "C-001",
+      "title": "Song Three",
+      "artist": "Artist C",
+      "youtubeUrl": "https://www.youtube.com/watch?v=V5M2WZiAy6k",
+      "duration": "5:10"
+    }
+  ]
+  

@@ -1,0 +1,56 @@
+/* src/styles/songList.module.css */
+
+.songTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.songTable th,
+.songTable td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.songTable th {
+  font-weight: bold;
+  background-color: #f4f4f4;
+}
+
+.songTable tr {
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.songTable tr:hover {
+  background-color: #f9f9f9; /* Light gray hover effect */
+  cursor: pointer;
+}
+
+.songTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+}
+
+.titleInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.artist {
+  font-size: 12px;
+  color: #666;
+}
