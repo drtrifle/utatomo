@@ -1,6 +1,6 @@
 export async function fetchSongs() {
   try {
-    const response = await fetch('/data/songs.json');
+    const response = await fetch('/utatomo/data/songs.json');
     if (!response.ok) {
       throw new Error(`Error fetching songs: ${response.statusText}`);
     }
@@ -30,7 +30,7 @@ export const fetchSongById = async (songId) => {
 
 export const fetchLyricsById = async (songId) => {
   try {
-    const response = await fetch(`/data/lyrics/${songId}.json`);
+    const response = await fetch(`/utatomo/data/lyrics/${songId}.json`);
     if (!response.ok) {
       throw new Error(`Lyrics not found for ID: ${songId}`);
     }
