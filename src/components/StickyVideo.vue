@@ -1,7 +1,7 @@
 <template>
     <div class="sticky-video">
         <iframe :src="`https://www.youtube.com/embed/${extractYouTubeId(youtubeUrl)}`" frameborder="0"
-            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            allowfullscreen></iframe>
     </div>
 </template>
 

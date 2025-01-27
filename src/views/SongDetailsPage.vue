@@ -3,15 +3,30 @@
     <button @click="$router.push('/songs')" class="back-button">← Back to Songs</button>
 
     <div v-if="song" class="song-details-container">
-      <!-- Use the StickyVideo component -->
+      <!-- Sticky Video -->
       <StickyVideo :youtubeUrl="song.youtubeUrl" />
 
-      <!-- Use the ScrollableContainer component -->
+      <!-- Widget Container -->
+      <div class="widget-container">
+        <EnglishLyricToggle v-model="showEnglish" />
+        <FontSizeWidget v-model="fontSize" />
+      </div>
+
+      <!-- Scrollable Lyrics -->
       <ScrollableContainer :maxHeight="'calc(100vh - 300px)'">
         <h2>Lyrics</h2>
         <div v-if="lyrics">
-          <p v-for="(line, index) in lyrics" :key="index">
-            {{ line.trim() === '' ? '\u00A0' : line }}
+          <p 
+            v-for="(line, index) in lyrics" 
+            :key="index" 
+            :class="fontSizeClass"
+          >
+            <span v-if="!line.isEmpty()">
+              {{ line.ChnStr }}
+              <br v-if="line.EngStr && showEnglish" />
+              <small v-if="line.EngStr && showEnglish">{{ line.EngStr }}</small>
+            </span>
+            <span v-else>&nbsp;</span>
           </p>
         </div>
         <p v-else class="loading">Loading lyrics...</p>
@@ -25,28 +40,48 @@
 import { fetchSongById, fetchLyricsById } from '../services/songService';
 import StickyVideo from '../components/StickyVideo.vue';
 import ScrollableContainer from '../components/ScrollableContainer.vue';
+import EnglishLyricToggle from '../components/EnglishLyricToggle.vue';
+import FontSizeWidget from '../components/FontSizeWidget.vue';
 
 export default {
   components: {
     StickyVideo,
     ScrollableContainer,
+    EnglishLyricToggle,
+    FontSizeWidget,
   },
   data() {
     return {
       song: null,
       lyrics: null,
+      showEnglish: true, // Controls the display of English lyrics
+      fontSize: 'medium', // Controls the font size
     };
   },
-  async created() {
-    try {
-      const songId = this.$route.params.id;
-      this.song = await fetchSongById(songId);
-      if (this.song) {
-        this.lyrics = await fetchLyricsById(songId);
+  computed: {
+    fontSizeClass() {
+      return {
+        small: this.fontSize === 'small',
+        medium: this.fontSize === 'medium',
+        large: this.fontSize === 'large',
+      };
+    },
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const songId = this.$route.params.id;
+        this.song = await fetchSongById(songId);
+        if (this.song) {
+          this.lyrics = await fetchLyricsById(songId);
+        }
+      } catch (error) {
+        console.error('Error loading song details:', error);
       }
-    } catch (error) {
-      console.error('Error loading song details:', error);
-    }
+    },
+  },
+  created() {
+    this.fetchData();
   },
 };
 </script>
@@ -70,6 +105,23 @@ export default {
   overflow: hidden;
 }
 
+.back-button {
+  margin-bottom: 20px; /* Adjust the value to control space */
+  font-size: 16px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.widget-container {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 .loading {
   text-align: center;
   font-size: 18px;
@@ -85,5 +137,32 @@ h2 {
 p {
   margin: 0 0 10px;
   white-space: pre-wrap; /* Preserve formatting */
+}
+
+p.small {
+  font-size: 0.8rem;
+}
+
+p.medium {
+  font-size: 1rem;
+}
+
+p.large {
+  font-size: 1.2rem;
+}
+
+/* Responsive font sizes */
+@media (max-width: 768px) {
+  p.small {
+    font-size: 0.7rem;
+  }
+
+  p.medium {
+    font-size: 0.9rem;
+  }
+
+  p.large {
+    font-size: 1.1rem;
+  }
 }
 </style>

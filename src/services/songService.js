@@ -1,3 +1,5 @@
+import { SongLyric } from '../models/SongLyric';
+
 export async function fetchSongs() {
   try {
     const response = await fetch('/utatomo/data/songs.json');
@@ -36,7 +38,11 @@ export const fetchLyricsById = async (songId) => {
     }
     const data = await response.json();
     console.log(`Fetched lyrics for ID ${songId}:`, data);
-    return data.lyrics;
+
+    // Transform each line into a SongLyric object
+    return data.lyrics.map(
+      (line) => new SongLyric(line.ChnStr || '', line.EngStr || '')
+    );
   } catch (error) {
     console.error('Error fetching lyrics:', error);
     return null;
