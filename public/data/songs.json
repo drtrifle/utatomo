@@ -7,17 +7,17 @@
     "duration": "4:20"
   },
   {
+    "id": "GEM-001",
+    "title": "泡沫",
+    "artist": "鄧紫棋 (G.E.M.)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=GHXr4bBxHCo",
+    "duration": "5:10"
+  },
+  {
     "id": "JIN-001",
     "title": "远走高飞",
     "artist": "金志文 (Jin Zhiwen)",
     "youtubeUrl": "https://www.youtube.com/watch?v=TSeruwcAqgM",
     "duration": "3:45"
-  },
-  {
-    "id": "C-001",
-    "title": "Song Three",
-    "artist": "Artist C",
-    "youtubeUrl": "https://www.youtube.com/watch?v=V5M2WZiAy6k",
-    "duration": "5:10"
   }
 ]

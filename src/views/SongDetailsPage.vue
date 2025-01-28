@@ -24,18 +24,19 @@
       <ScrollableContainer :maxHeight="'calc(100vh - 300px)'">
         <h2>Lyrics</h2>
         <div v-if="lyrics">
-          <p 
-            v-for="(line, index) in lyrics" 
-            :key="index" 
+          <div
+            v-for="(line, index) in lyrics"
+            :key="index"
             :class="fontSizeClass"
           >
-            <span v-if="!line.isEmpty()">
-              {{ line.ChnStr }}
-              <br v-if="line.EngStr && engLyricsIdx == 0" />
-              <small v-if="line.EngStr && engLyricsIdx == 0">{{ line.EngStr }}</small>
-            </span>
-            <span v-else>&nbsp;</span>
-          </p>
+            <div v-if="!line.isEmpty()">
+              <small v-if="line.ChnStr">{{ line.getPinyin() }}</small>
+              <div>{{ line.ChnStr }}</div>
+              <small v-if="engLyricsIdx == 0">{{ line.EngStr }}</small>
+            </div>
+            <div v-else>&nbsp;</div>
+            <br/>
+          </div>
         </div>
         <p v-else class="loading">Loading lyrics...</p>
       </ScrollableContainer>
@@ -60,16 +61,16 @@ export default {
     return {
       song: null,
       lyrics: null,
-      engLyricsIdx :0,
-      fontSizeIdx: 1, // Controls the selected option in the ToggleWidget
+      engLyricsIdx: 0,
+      fontSizeIdx: 1,
     };
   },
   computed: {
     fontSizeClass() {
       return {
-        small: this.fontSizeIdx === 0,
-        medium: this.fontSizeIdx === 1,
-        large: this.fontSizeIdx === 2,
+        fontSmall: this.fontSizeIdx == 0,
+        fontMedium: this.fontSizeIdx == 1,
+        fontLarge: this.fontSizeIdx == 2,
       };
     },
   },
@@ -140,35 +141,17 @@ h2 {
   color: #333;
 }
 
-p {
-  margin: 0 0 10px;
-  white-space: pre-wrap; /* Preserve formatting */
-}
-
-p.small {
+.fontSmall {
   font-size: 0.8rem;
 }
 
-p.medium {
+.fontMedium {
   font-size: 1rem;
 }
 
-p.large {
+.fontLarge {
   font-size: 1.2rem;
 }
 
-/* Responsive font sizes */
-@media (max-width: 768px) {
-  p.small {
-    font-size: 0.7rem;
-  }
-
-  p.medium {
-    font-size: 0.9rem;
-  }
-
-  p.large {
-    font-size: 1.1rem;
-  }
-}
 </style>
+
