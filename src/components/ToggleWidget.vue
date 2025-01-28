@@ -1,24 +1,14 @@
 <template>
     <div class="widget compact">
-      <div class="widget-header">Font Size</div>
+      <div class="widget-header">{{ header }}</div>
       <div class="widget-body">
         <button 
-          :class="{ active: modelValue === 'small' }" 
-          @click="$emit('update:modelValue', 'small')"
+          v-for="(option, index) in options" 
+          :key="index" 
+          :class="{ active: modelValue === index }" 
+          @click="$emit('update:modelValue', index)"
         >
-          S
-        </button>
-        <button 
-          :class="{ active: modelValue === 'medium' }" 
-          @click="$emit('update:modelValue', 'medium')"
-        >
-          M
-        </button>
-        <button 
-          :class="{ active: modelValue === 'large' }" 
-          @click="$emit('update:modelValue', 'large')"
-        >
-          L
+          {{ option }}
         </button>
       </div>
     </div>
@@ -27,8 +17,16 @@
   <script>
   export default {
     props: {
-      modelValue: {
+      header: {
         type: String,
+        required: true,
+      },
+      options: {
+        type: Array,
+        required: true,
+      },
+      modelValue: {
+        type: Number,
         required: true,
       },
     },

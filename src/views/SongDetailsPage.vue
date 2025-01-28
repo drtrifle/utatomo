@@ -8,8 +8,16 @@
 
       <!-- Widget Container -->
       <div class="widget-container">
-        <EnglishLyricToggle v-model="showEnglish" />
-        <FontSizeWidget v-model="fontSize" />
+        <ToggleWidget 
+          header="English Lyrics" 
+          :options="['On', 'Off']" 
+          v-model="engLyricsIdx" 
+        />
+        <ToggleWidget 
+          header="Font Size" 
+          :options="['S', 'M', 'L']" 
+          v-model="fontSizeIdx" 
+        />
       </div>
 
       <!-- Scrollable Lyrics -->
@@ -23,8 +31,8 @@
           >
             <span v-if="!line.isEmpty()">
               {{ line.ChnStr }}
-              <br v-if="line.EngStr && showEnglish" />
-              <small v-if="line.EngStr && showEnglish">{{ line.EngStr }}</small>
+              <br v-if="line.EngStr && engLyricsIdx == 0" />
+              <small v-if="line.EngStr && engLyricsIdx == 0">{{ line.EngStr }}</small>
             </span>
             <span v-else>&nbsp;</span>
           </p>
@@ -40,30 +48,28 @@
 import { fetchSongById, fetchLyricsById } from '../services/songService';
 import StickyVideo from '../components/StickyVideo.vue';
 import ScrollableContainer from '../components/ScrollableContainer.vue';
-import EnglishLyricToggle from '../components/EnglishLyricToggle.vue';
-import FontSizeWidget from '../components/FontSizeWidget.vue';
+import ToggleWidget from '../components/ToggleWidget.vue';
 
 export default {
   components: {
     StickyVideo,
     ScrollableContainer,
-    EnglishLyricToggle,
-    FontSizeWidget,
+    ToggleWidget,
   },
   data() {
     return {
       song: null,
       lyrics: null,
-      showEnglish: true, // Controls the display of English lyrics
-      fontSize: 'medium', // Controls the font size
+      engLyricsIdx :0,
+      fontSizeIdx: 1, // Controls the selected option in the ToggleWidget
     };
   },
   computed: {
     fontSizeClass() {
       return {
-        small: this.fontSize === 'small',
-        medium: this.fontSize === 'medium',
-        large: this.fontSize === 'large',
+        small: this.fontSizeIdx === 0,
+        medium: this.fontSizeIdx === 1,
+        large: this.fontSizeIdx === 2,
       };
     },
   },
