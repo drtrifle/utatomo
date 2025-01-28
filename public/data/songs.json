@@ -1,23 +1,93 @@
 [
   {
+    "id": "AMEI-001",
+    "title": "聽海",
+    "artist": "張惠妹 (A-Mei)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=mLk61pfiHQ0",
+    "duration": "0:00"
+  },
+  {
+    "id": "ANDY-001",
+    "title": "笨小孩",
+    "artist": "聰明版 (Andy Lau)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=tuC_Ng07iCw",
+    "duration": "0:00"
+  },
+  {
     "id": "ASI-001",
-    "title": " 热爱105°C的你",
+    "title": "热爱105°C的你",
     "artist": "阿肆 (A Si)",
     "youtubeUrl": "https://www.youtube.com/watch?v=UXTFZCo2uuY",
-    "duration": "4:20"
+    "duration": "0:00"
+  },
+  {
+    "id": "AYUE-001",
+    "title": "思念是一種病",
+    "artist": "張震嶽 (A-Yue)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=9ei1PUmDz98",
+    "duration": "0:00"
+  },
+  {
+    "id": "AYUE-002",
+    "title": "再見",
+    "artist": "張震嶽 (A-Yue)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=_VCU94B_Oig",
+    "duration": "0:00"
+  },
+  {
+    "id": "EASON-001",
+    "title": "十年",
+    "artist": "陳奕迅 (Eason Chan)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=JM9rx_hN1Ko",
+    "duration": "0:00"
   },
   {
     "id": "GEM-001",
     "title": "泡沫",
     "artist": "鄧紫棋 (G.E.M.)",
     "youtubeUrl": "https://www.youtube.com/watch?v=GHXr4bBxHCo",
-    "duration": "5:10"
+    "duration": "0:00"
+  },
+  {
+    "id": "JAY-001",
+    "title": "告白氣球",
+    "artist": "周杰倫 (Jay Chou)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=TSeruwcAqgM",
+    "duration": "0:00"
   },
   {
     "id": "JIN-001",
     "title": "远走高飞",
     "artist": "金志文 (Jin Zhiwen)",
     "youtubeUrl": "https://www.youtube.com/watch?v=TSeruwcAqgM",
-    "duration": "3:45"
+    "duration": "0:00"
+  },
+  {
+    "id": "MAO-001",
+    "title": "像我這樣的人",
+    "artist": "毛不易 (Mao Buyi)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=nBcYrqsv5tc",
+    "duration": "0:00"
+  },
+  {
+    "id": "MIXER-001",
+    "title": "嗜愛動物 (Loveholic)",
+    "artist": "麋先生 (Mixer)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=4JNb4fiT1VA",
+    "duration": "0:00"
+  },
+  {
+    "id": "PUSHU-001",
+    "title": "平凡之路 (The Ordinary Road)",
+    "artist": "朴树 (Pu Shu)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=ecTSlaNM0Z0",
+    "duration": "0:00"
+  },
+  {
+    "id": "RONGHAO-001",
+    "title": "年少有為 (If I Were Young)",
+    "artist": "李榮浩 (Ronghao Li)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=Dnj5Tcpev0Q",
+    "duration": "0:00"
   }
 ]
