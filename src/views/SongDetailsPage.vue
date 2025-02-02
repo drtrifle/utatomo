@@ -8,54 +8,55 @@
 
       <!-- Widget Container -->
       <div class="widget-container">
-        <ToggleWidget 
-          header="English Lyrics" 
-          :options="['On', 'Off']" 
-          v-model="engLyricsIdx" 
-        />
-        <ToggleWidget 
-          header="Font Size" 
-          :options="['S', 'M', 'L']" 
-          v-model="fontSizeIdx" 
-        />
+        <ToggleWidget header="English Lyrics" :options="['On', 'Off']" v-model="engLyricsIdx" />
+        <ToggleWidget header="Font Size" :options="['S', 'M', 'L']" v-model="fontSizeIdx" />
       </div>
 
       <!-- Scrollable Lyrics -->
       <ScrollableContainer :maxHeight="'calc(100vh - 300px)'">
-        <h2>Lyrics</h2>
+        <h2 v-once>Lyrics</h2>
         <div v-if="lyrics">
-          <div
-            v-for="(line, index) in lyrics"
-            :key="index"
-            :class="fontSizeClass"
-          >
+          <div v-for="(line, index) in lyrics" :key="index" :class="fontSizeClass">
             <div v-if="!line.isEmpty()">
               <small v-if="line.ChnStr">{{ line.getPinyin() }}</small>
               <div>{{ line.ChnStr }}</div>
               <small v-if="engLyricsIdx == 0">{{ line.EngStr }}</small>
             </div>
             <div v-else>&nbsp;</div>
-            <br/>
+            <br />
           </div>
         </div>
         <p v-else class="loading">Loading lyrics...</p>
       </ScrollableContainer>
     </div>
-    <div v-else class="loading">Loading...</div>
+    <div v-else>
+      <!-- LoadingSpinner -->
+      <LoadingSpinner message="Loading song details..."/>
+    </div>
   </div>
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue';
 import { fetchSongById, fetchLyricsById } from '../services/songService';
-import StickyVideo from '../components/StickyVideo.vue';
-import ScrollableContainer from '../components/ScrollableContainer.vue';
-import ToggleWidget from '../components/ToggleWidget.vue';
+
+import LoadingSpinner from '@/components/widgets/LoadingSpinner.vue';
+const StickyVideo = defineAsyncComponent(() =>
+  import('../components/StickyVideo.vue')
+);
+const ScrollableContainer = defineAsyncComponent(() =>
+  import('../components/ScrollableContainer.vue')
+);
+const ToggleWidget = defineAsyncComponent(() =>
+  import('../components/widgets/ToggleWidget.vue')
+);
 
 export default {
   components: {
     StickyVideo,
     ScrollableContainer,
     ToggleWidget,
+    LoadingSpinner,
   },
   data() {
     return {
@@ -113,13 +114,22 @@ export default {
 }
 
 .back-button {
-  margin-bottom: 20px; /* Adjust the value to control space */
+  margin-bottom: 20px;
+  /* Adjust the value to control space */
   font-size: 16px;
   padding: 10px;
   background-color: #f0f0f0;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+}
+
+.back-button:active {
+  background-color: #d0d0d0;
 }
 
 .widget-container {
@@ -141,17 +151,22 @@ h2 {
   color: #333;
 }
 
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
 .fontSmall {
   font-size: 0.8rem;
+  line-height: 1.4;
 }
 
 .fontMedium {
   font-size: 1rem;
+  line-height: 1.5;
 }
 
 .fontLarge {
   font-size: 1.2rem;
+  line-height: 1.6;
 }
-
 </style>
-

@@ -2,13 +2,22 @@
   <div class="home-page">
     <h1>Welcome to UtaTomo</h1>
     <p>Learn languages through songs!</p>
-    <router-link to="/songs" class="view-songs-link">View Song List</router-link>
+    <LinkButton 
+      to="/songs" 
+      text="View Song List"
+      color="#007bff"
+      hover-color="#0056b3"
+    />
   </div>
 </template>
 
 <script>
+import LinkButton from '../components/widgets/LinkButton.vue';
 export default {
   name: 'HomePage',
+  components: {
+    LinkButton
+  }
 };
 </script>
 
@@ -33,19 +42,5 @@ p {
   font-size: 1.25rem;
   margin-bottom: 20px;
   color: #555;
-}
-
-.view-songs-link {
-  font-size: 1.2rem;
-  color: white;
-  background-color: #007bff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.view-songs-link:hover {
-  background-color: #0056b3;
 }
 </style>
