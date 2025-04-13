@@ -2,13 +2,18 @@ import { SongLyric } from '../models/SongLyric';
 
 export async function fetchSongs() {
   try {
-    const response = await fetch('/utatomo/data/songs.json');
+    const baseUrl = import.meta.env.DEV ? '' : '/utatomo';
+    console.log('Fetching songs from:', `${baseUrl}/data/songs.json`);
+    const response = await fetch(`${baseUrl}/data/songs.json`);
+    console.log('Response status:', response.status);
     if (!response.ok) {
       throw new Error(`Error fetching songs: ${response.statusText}`);
     }
-    return await response.json();
+    const data = await response.json();
+    console.log('Fetched songs:', data);
+    return data;
   } catch (error) {
-    console.error(error);
+    console.error('Error in fetchSongs:', error);
     return [];
   }
 }
@@ -32,7 +37,8 @@ export const fetchSongById = async (songId) => {
 
 export const fetchLyricsById = async (songId) => {
   try {
-    const response = await fetch(`/utatomo/data/lyrics/${songId}.json`);
+    const baseUrl = import.meta.env.DEV ? '' : '/utatomo';
+    const response = await fetch(`${baseUrl}/data/lyrics/${songId}.json`);
     if (!response.ok) {
       throw new Error(`Lyrics not found for ID: ${songId}`);
     }
