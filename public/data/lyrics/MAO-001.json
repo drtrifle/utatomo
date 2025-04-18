@@ -1,61 +1,230 @@
 {
-    "lyrics": [
-      { "ChnStr": "像我这样优秀的人", "EngStr": "A person as outstanding as me" },
-      { "ChnStr": "本该灿烂过一生", "EngStr": "Should have shone brightly throughout life" },
-      { "ChnStr": "怎么二十多年到头来", "EngStr": "How did it come to be after over twenty years" },
-      { "ChnStr": "还在人海里浮沉", "EngStr": "Still drifting in the sea of people" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "像我这样聪明的人", "EngStr": "A person as smart as me" },
-      { "ChnStr": "早就告别了单纯", "EngStr": "Should have long left behind innocence" },
-      { "ChnStr": "怎么还是用了一段情", "EngStr": "How did I still use a relationship" },
-      { "ChnStr": "去换一身伤痕", "EngStr": "To exchange for scars" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "像我这样迷茫的人", "EngStr": "A person as confused as me" },
-      { "ChnStr": "像我这样寻找的人", "EngStr": "A person as searching as me" },
-      { "ChnStr": "像我这样碌碌无为的人", "EngStr": "A person as mediocre as me" },
-      { "ChnStr": "你还见过多少人", "EngStr": "How many people like me have you seen" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "像我这样庸俗的人", "EngStr": "A person as vulgar as me" },
-      { "ChnStr": "从不喜欢装深沉", "EngStr": "Never liked pretending to be profound" },
-      { "ChnStr": "怎么偶尔听到老歌时", "EngStr": "How sometimes, when I hear an old song" },
-      { "ChnStr": "忽然也晃了神", "EngStr": "I suddenly lose myself" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "像我这样懦弱的人", "EngStr": "A person as weak as me" },
-      { "ChnStr": "凡事都要留几分", "EngStr": "Always leaves a little room for everything" },
-      { "ChnStr": "怎么曾经也会为了谁", "EngStr": "How once I would also do it for someone" },
-      { "ChnStr": "想过奋不顾身", "EngStr": "Thought of throwing caution to the wind" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "像我这样迷茫的人", "EngStr": "A person as confused as me" },
-      { "ChnStr": "像我这样寻找的人", "EngStr": "A person as searching as me" },
-      { "ChnStr": "像我这样碌碌无为的人", "EngStr": "A person as mediocre as me" },
-      { "ChnStr": "你还见过多少人", "EngStr": "How many people like me have you seen" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "像我这样孤单的人", "EngStr": "A person as lonely as me" },
-      { "ChnStr": "像我这样傻的人", "EngStr": "A person as foolish as me" },
-      { "ChnStr": "像我这样不甘平凡的人", "EngStr": "A person as unwilling to be ordinary as me" },
-      { "ChnStr": "世界上有多少人", "EngStr": "How many people are there in the world" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "像我这样迷茫的人", "EngStr": "A person as confused as me" },
-      { "ChnStr": "像我这样寻找的人", "EngStr": "A person as searching as me" },
-      { "ChnStr": "像我这样碌碌无为的人", "EngStr": "A person as mediocre as me" },
-      { "ChnStr": "你还见过多少人", "EngStr": "How many people like me have you seen" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "像我这样孤单的人", "EngStr": "A person as lonely as me" },
-      { "ChnStr": "像我这样傻的人", "EngStr": "A person as foolish as me" },
-      { "ChnStr": "像我这样不甘平凡的人", "EngStr": "A person as unwilling to be ordinary as me" },
-      { "ChnStr": "世界上有多少人", "EngStr": "How many people are there in the world" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "像我这样莫名其妙的人", "EngStr": "A person as inexplicable as me" },
-      { "ChnStr": "会不会有人心疼", "EngStr": "Will there be someone who cares for me" }
-    ]
-  }
-  
+  "lyrics": [
+    {
+      "ChnStr": "像我这样优秀的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]优[yōu]秀[xiù]的[de]人[rén]",
+      "EngStr": "A person as outstanding as me"
+    },
+    {
+      "ChnStr": "本该灿烂过一生",
+      "Pinyin": "本[běn]该[gāi]灿[càn]烂[làn]过[guò]一[yī]生[shēng]",
+      "EngStr": "Should have shone brightly throughout life"
+    },
+    {
+      "ChnStr": "怎么二十多年到头来",
+      "Pinyin": "怎[zěn]么[mó]二[èr]十[shí]多[duō]年[nián]到[dào]头[tóu]来[lái]",
+      "EngStr": "How did it come to be after over twenty years"
+    },
+    {
+      "ChnStr": "还在人海里浮沉",
+      "Pinyin": "还[huán]在[zài]人[rén]海[hǎi]里[lǐ]浮[fú]沉[chén]",
+      "EngStr": "Still drifting in the sea of people"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "像我这样聪明的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]聪[cōng]明[míng]的[de]人[rén]",
+      "EngStr": "A person as smart as me"
+    },
+    {
+      "ChnStr": "早就告别了单纯",
+      "Pinyin": "早[zǎo]就[jiù]告[gào]别[bié]了[le]单[dān]纯[chún]",
+      "EngStr": "Should have long left behind innocence"
+    },
+    {
+      "ChnStr": "怎么还是用了一段情",
+      "Pinyin": "怎[zěn]么[mó]还[huán]是[shì]用[yòng]了[le]一[yī]段[duàn]情[qíng]",
+      "EngStr": "How did I still use a relationship"
+    },
+    {
+      "ChnStr": "去换一身伤痕",
+      "Pinyin": "去[qù]换[huàn]一[yī]身[shēn]伤[shāng]痕[hén]",
+      "EngStr": "To exchange for scars"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "像我这样迷茫的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]迷[mí]茫[máng]的[de]人[rén]",
+      "EngStr": "A person as confused as me"
+    },
+    {
+      "ChnStr": "像我这样寻找的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]寻[xún]找[zhǎo]的[de]人[rén]",
+      "EngStr": "A person as searching as me"
+    },
+    {
+      "ChnStr": "像我这样碌碌无为的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]碌[lù]碌[lù]无[wú]为[wéi]的[de]人[rén]",
+      "EngStr": "A person as mediocre as me"
+    },
+    {
+      "ChnStr": "你还见过多少人",
+      "Pinyin": "你[nǐ]还[huán]见[jiàn]过[guò]多[duō]少[shǎo]人[rén]",
+      "EngStr": "How many people like me have you seen"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "像我这样庸俗的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]庸[yōng]俗[sú]的[de]人[rén]",
+      "EngStr": "A person as vulgar as me"
+    },
+    {
+      "ChnStr": "从不喜欢装深沉",
+      "Pinyin": "从[cóng]不[bù]喜[xǐ]欢[huān]装[zhuāng]深[shēn]沉[chén]",
+      "EngStr": "Never liked pretending to be profound"
+    },
+    {
+      "ChnStr": "怎么偶尔听到老歌时",
+      "Pinyin": "怎[zěn]么[mó]偶[ǒu]尔[ěr]听[tīng]到[dào]老[lǎo]歌[gē]时[shí]",
+      "EngStr": "How sometimes, when I hear an old song"
+    },
+    {
+      "ChnStr": "忽然也晃了神",
+      "Pinyin": "忽[hū]然[rán]也[yě]晃[huǎng]了[le]神[shén]",
+      "EngStr": "I suddenly lose myself"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "像我这样懦弱的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]懦[nuò]弱[ruò]的[de]人[rén]",
+      "EngStr": "A person as weak as me"
+    },
+    {
+      "ChnStr": "凡事都要留几分",
+      "Pinyin": "凡[fán]事[shì]都[dū]要[yào]留[liú]几[jī]分[fēn]",
+      "EngStr": "Always leaves a little room for everything"
+    },
+    {
+      "ChnStr": "怎么曾经也会为了谁",
+      "Pinyin": "怎[zěn]么[mó]曾[zēng]经[jīng]也[yě]会[huì]为[wéi]了[le]谁[shuí]",
+      "EngStr": "How once I would also do it for someone"
+    },
+    {
+      "ChnStr": "想过奋不顾身",
+      "Pinyin": "想[xiǎng]过[guò]奋[fèn]不[bù]顾[gù]身[shēn]",
+      "EngStr": "Thought of throwing caution to the wind"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "像我这样迷茫的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]迷[mí]茫[máng]的[de]人[rén]",
+      "EngStr": "A person as confused as me"
+    },
+    {
+      "ChnStr": "像我这样寻找的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]寻[xún]找[zhǎo]的[de]人[rén]",
+      "EngStr": "A person as searching as me"
+    },
+    {
+      "ChnStr": "像我这样碌碌无为的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]碌[lù]碌[lù]无[wú]为[wéi]的[de]人[rén]",
+      "EngStr": "A person as mediocre as me"
+    },
+    {
+      "ChnStr": "你还见过多少人",
+      "Pinyin": "你[nǐ]还[huán]见[jiàn]过[guò]多[duō]少[shǎo]人[rén]",
+      "EngStr": "How many people like me have you seen"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "像我这样孤单的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]孤[gū]单[dān]的[de]人[rén]",
+      "EngStr": "A person as lonely as me"
+    },
+    {
+      "ChnStr": "像我这样傻的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]傻[shǎ]的[de]人[rén]",
+      "EngStr": "A person as foolish as me"
+    },
+    {
+      "ChnStr": "像我这样不甘平凡的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]不[bù]甘[gān]平[píng]凡[fán]的[de]人[rén]",
+      "EngStr": "A person as unwilling to be ordinary as me"
+    },
+    {
+      "ChnStr": "世界上有多少人",
+      "Pinyin": "世[shì]界[jiè]上[shàng]有[yǒu]多[duō]少[shǎo]人[rén]",
+      "EngStr": "How many people are there in the world"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "像我这样迷茫的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]迷[mí]茫[máng]的[de]人[rén]",
+      "EngStr": "A person as confused as me"
+    },
+    {
+      "ChnStr": "像我这样寻找的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]寻[xún]找[zhǎo]的[de]人[rén]",
+      "EngStr": "A person as searching as me"
+    },
+    {
+      "ChnStr": "像我这样碌碌无为的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]碌[lù]碌[lù]无[wú]为[wéi]的[de]人[rén]",
+      "EngStr": "A person as mediocre as me"
+    },
+    {
+      "ChnStr": "你还见过多少人",
+      "Pinyin": "你[nǐ]还[huán]见[jiàn]过[guò]多[duō]少[shǎo]人[rén]",
+      "EngStr": "How many people like me have you seen"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "像我这样孤单的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]孤[gū]单[dān]的[de]人[rén]",
+      "EngStr": "A person as lonely as me"
+    },
+    {
+      "ChnStr": "像我这样傻的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]傻[shǎ]的[de]人[rén]",
+      "EngStr": "A person as foolish as me"
+    },
+    {
+      "ChnStr": "像我这样不甘平凡的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]不[bù]甘[gān]平[píng]凡[fán]的[de]人[rén]",
+      "EngStr": "A person as unwilling to be ordinary as me"
+    },
+    {
+      "ChnStr": "世界上有多少人",
+      "Pinyin": "世[shì]界[jiè]上[shàng]有[yǒu]多[duō]少[shǎo]人[rén]",
+      "EngStr": "How many people are there in the world"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "像我这样莫名其妙的人",
+      "Pinyin": "像[xiàng]我[wǒ]这[zhè]样[yàng]莫[mò]名[míng]其[qí]妙[miào]的[de]人[rén]",
+      "EngStr": "A person as inexplicable as me"
+    },
+    {
+      "ChnStr": "会不会有人心疼",
+      "Pinyin": "会[huì]不[bù]会[huì]有[yǒu]人[rén]心[xīn]疼[téng]",
+      "EngStr": "Will there be someone who cares for me"
+    }
+  ]
+}
