@@ -18,9 +18,17 @@
         <div v-if="lyrics">
           <div v-for="(line, index) in lyrics" :key="index" :class="fontSizeClass">
             <div v-if="!line.isEmpty()">
-              <small v-if="line.ChnStr">{{ line.getPinyin() }}</small>
-              <div>{{ line.ChnStr }}</div>
-              <small v-if="engLyricsIdx == 0">{{ line.EngStr }}</small>
+              <div class="line-container">
+                <div class="chinese-line">
+                  <template v-for="(char, idx) in parsePinyin(line.getPinyin())" :key="idx">
+                    <div class="char-container">
+                      <span class="pinyin">{{ char.pinyin }}</span>
+                      <span class="hanzi">{{ char.hanzi }}</span>
+                    </div>
+                  </template>
+                </div>
+                <small v-if="engLyricsIdx == 0">{{ line.EngStr }}</small>
+              </div>
             </div>
             <div v-else>&nbsp;</div>
             <br />
@@ -86,6 +94,50 @@ export default {
       } catch (error) {
         console.error('Error loading song details:', error);
       }
+    },
+    parsePinyin(pinyinStr) {
+      if (!pinyinStr) return [];
+      const result = [];
+      let tempStr = '';
+
+      const isChineseChar = (char) => /[\u4e00-\u9fff]/.test(char);
+      
+      for (let i = 0; i < pinyinStr.length; i++) {
+        const char = pinyinStr[i];
+        
+        if (isChineseChar(char)) {
+          // If we have accumulated non-Chinese text, push it
+          if (tempStr) {
+            result.push({ hanzi: tempStr, pinyin: '' });
+            tempStr = '';
+          }
+          
+          // Find the pinyin annotation for this character
+          const nextBracket = pinyinStr.indexOf('[', i);
+          if (nextBracket === i + 1) { // Make sure bracket immediately follows the character
+            const closeBracketIndex = pinyinStr.indexOf(']', nextBracket);
+            if (closeBracketIndex !== -1) {
+              const pinyin = pinyinStr.slice(nextBracket + 1, closeBracketIndex);
+              result.push({ hanzi: char, pinyin });
+              i = closeBracketIndex; // Skip to end of pinyin bracket
+              continue;
+            }
+          }
+          
+          // If no pinyin annotation found, just add the character
+          result.push({ hanzi: char, pinyin: '' });
+        } else if (char !== '[' && char !== ']') {
+          // Accumulate non-Chinese characters
+          tempStr += char;
+        }
+      }
+      
+      // Push any remaining non-Chinese text
+      if (tempStr) {
+        result.push({ hanzi: tempStr, pinyin: '' });
+      }
+      
+      return result;
     },
   },
   created() {
@@ -168,5 +220,47 @@ body {
 .fontLarge {
   font-size: 1.2rem;
   line-height: 1.6;
+}
+
+.line-container {
+  margin: 1em 0;
+}
+
+.chinese-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 0.5em;
+}
+
+.char-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 1em;
+}
+
+.pinyin {
+  font-size: 0.7em;
+  color: #666;
+  height: 1.2em;
+  text-align: center;
+}
+
+.hanzi {
+  font-size: 1.2em;
+}
+
+/* Update existing font size classes to affect the hanzi size */
+.fontSmall .hanzi {
+  font-size: 1em;
+}
+
+.fontMedium .hanzi {
+  font-size: 1.2em;
+}
+
+.fontLarge .hanzi {
+  font-size: 1.4em;
 }
 </style>

@@ -45,9 +45,9 @@ export const fetchLyricsById = async (songId) => {
     const data = await response.json();
     console.log(`Fetched lyrics for ID ${songId}:`, data);
 
-    // Transform each line into a SongLyric object
+    // Transform each line into a SongLyric object with Pinyin
     return data.lyrics.map(
-      (line) => new SongLyric(line.ChnStr || '', line.EngStr || '')
+      (line) => new SongLyric(line.ChnStr || '', line.EngStr || '', line.Pinyin || '')
     );
   } catch (error) {
     console.error('Error fetching lyrics:', error);
