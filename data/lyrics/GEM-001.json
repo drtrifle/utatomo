@@ -1,128 +1,153 @@
 {
-    "lyrics": [
-        {
-            "ChnStr": "阳光下的泡沫 是彩色的",
-            "EngStr": "The bubbles under the sunshine are colorful"
-        },
-        {
-            "ChnStr": "就像被骗的我 是幸福的",
-            "EngStr": "Just like me, deceived, but happy"
-        },
-        {
-            "ChnStr": "追究什么对错 你的谎言 基于你还爱我",
-            "EngStr": "No need to argue about right or wrong, your lies are based on the fact that you still love me"
-        },
-        {
-            "ChnStr": "",
-            "EngStr": ""
-        },
-        {
-            "ChnStr": "美丽的泡沫 虽然一刹花火",
-            "EngStr": "The beautiful bubbles, though fleeting like fireworks"
-        },
-        {
-            "ChnStr": "你所有承诺 虽然都太脆弱",
-            "EngStr": "All your promises, though too fragile"
-        },
-        {
-            "ChnStr": "但爱像泡沫 如果能够看破 有什么难过",
-            "EngStr": "But love is like bubbles, if you can see through it, what's there to be sad about"
-        },
-        {
-            "ChnStr": "",
-            "EngStr": ""
-        },
-        {
-            "ChnStr": "早该知道泡沫 一触就破",
-            "EngStr": "I should have known, bubbles break with a touch"
-        },
-        {
-            "ChnStr": "就像已伤的心 不胜折磨",
-            "EngStr": "Just like a wounded heart, unable to bear the torment"
-        },
-        {
-            "ChnStr": "也不是谁的错 谎言再多 基于你还爱我",
-            "EngStr": "It's no one's fault, no matter how many lies, they are based on the fact that you still love me"
-        },
-        {
-            "ChnStr": "",
-            "EngStr": ""
-        },
-        {
-            "ChnStr": "美丽的泡沫 虽然一刹花火",
-            "EngStr": "The beautiful bubbles, though fleeting like fireworks"
-        },
-        {
-            "ChnStr": "你所有承诺 虽然都太脆弱",
-            "EngStr": "All your promises, though too fragile"
-        },
-        {
-            "ChnStr": "爱本是泡沫 如果能够看破 有什么难过",
-            "EngStr": "Love is bubbles, if you can see through it, what's there to be sad about"
-        },
-        {
-            "ChnStr": "再美的花朵 盛开过就凋落",
-            "EngStr": "No matter how beautiful the flowers are, they bloom and then fall"
-        },
-        {
-            "ChnStr": "再亮眼的星 一闪过就坠落",
-            "EngStr": "No matter how bright the stars are, they fall after a flash"
-        },
-        {
-            "ChnStr": "爱本是泡沫 如果能够看破 有什么难过",
-            "EngStr": "Love is bubbles, if you can see through it, what's there to be sad about"
-        },
-        {
-            "ChnStr": "",
-            "EngStr": ""
-        },
-        {
-            "ChnStr": "为什么难过 有什么难过 为什么难过",
-            "EngStr": "Why be sad, what is there to be sad about, why be sad"
-        },
-        {
-            "ChnStr": "",
-            "EngStr": ""
-        },
-        {
-            "ChnStr": "全都是泡沫 只一刹的花火",
-            "EngStr": "It's all bubbles, just a fleeting moment of fireworks"
-        },
-        {
-            "ChnStr": "你所有承诺 全部都太脆弱",
-            "EngStr": "All your promises, they're all too fragile"
-        },
-        {
-            "ChnStr": "而你的轮廓 怪我没有看破 才如此难过",
-            "EngStr": "And your silhouette, I blame myself for not seeing through it, that's why I'm so sad"
-        },
-        {
-            "ChnStr": "相爱的把握 要如何再搜索",
-            "EngStr": "How can I search for the grasp of love again"
-        },
-        {
-            "ChnStr": "相拥著寂寞 难道就不寂寞",
-            "EngStr": "Embracing loneliness, does that mean it's no longer lonely"
-        },
-        {
-            "ChnStr": "爱本是泡沫 怪我没有看破 才如此难过",
-            "EngStr": "Love is bubbles, I blame myself for not seeing through it, that's why I'm so sad"
-        },
-        {
-            "ChnStr": "",
-            "EngStr": ""
-        },
-        {
-            "ChnStr": "在雨下的泡沫 一触就破",
-            "EngStr": "Bubbles under the rain break with a touch"
-        },
-        {
-            "ChnStr": "当初炽热的心 早已沉没",
-            "EngStr": "The once burning heart has long sunk"
-        },
-        {
-            "ChnStr": "说什么你爱我 如果骗我 我宁愿你沉默",
-            "EngStr": "Saying you love me, but if you lie, I'd rather you remain silent"
-        }
-    ]
+  "lyrics": [
+    {
+      "ChnStr": "阳光下的泡沫 是彩色的",
+      "Pinyin": "阳[yáng]光[guāng]下[xià]的[de]泡[pào]沫[mò] 是[shì]彩[cǎi]色[sè]的[de]",
+      "EngStr": "The bubbles under the sunshine are colorful"
+    },
+    {
+      "ChnStr": "就像被骗的我 是幸福的",
+      "Pinyin": "就[jiù]像[xiàng]被[bèi]骗[piàn]的[de]我[wǒ] 是[shì]幸[xìng]福[fú]的[de]",
+      "EngStr": "Just like me, deceived, but happy"
+    },
+    {
+      "ChnStr": "追究什么对错 你的谎言 基于你还爱我",
+      "Pinyin": "追[zhuī]究[jiū]什[shí]么[mó]对[duì]错[cuò] 你[nǐ]的[de]谎[huǎng]言[yán] 基[jī]于[yú]你[nǐ]还[huán]爱[ài]我[wǒ]",
+      "EngStr": "No need to argue about right or wrong, your lies are based on the fact that you still love me"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "美丽的泡沫 虽然一刹花火",
+      "Pinyin": "美[měi]丽[lì]的[de]泡[pào]沫[mò] 虽[suī]然[rán]一[yī]刹[chà]花[huā]火[huǒ]",
+      "EngStr": "The beautiful bubbles, though fleeting like fireworks"
+    },
+    {
+      "ChnStr": "你所有承诺 虽然都太脆弱",
+      "Pinyin": "你[nǐ]所[suǒ]有[yǒu]承[chéng]诺[nuò] 虽[suī]然[rán]都[dū]太[tài]脆[cuì]弱[ruò]",
+      "EngStr": "All your promises, though too fragile"
+    },
+    {
+      "ChnStr": "但爱像泡沫 如果能够看破 有什么难过",
+      "Pinyin": "但[dàn]爱[ài]像[xiàng]泡[pào]沫[mò] 如[rú]果[guǒ]能[néng]够[gòu]看[kàn]破[pò] 有[yǒu]什[shí]么[mó]难[nán]过[guò]",
+      "EngStr": "But love is like bubbles, if you can see through it, what's there to be sad about"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "早该知道泡沫 一触就破",
+      "Pinyin": "早[zǎo]该[gāi]知[zhī]道[dào]泡[pào]沫[mò] 一[yī]触[chù]就[jiù]破[pò]",
+      "EngStr": "I should have known, bubbles break with a touch"
+    },
+    {
+      "ChnStr": "就像已伤的心 不胜折磨",
+      "Pinyin": "就[jiù]像[xiàng]已[yǐ]伤[shāng]的[de]心[xīn] 不[bù]胜[shèng]折[zhē]磨[mó]",
+      "EngStr": "Just like a wounded heart, unable to bear the torment"
+    },
+    {
+      "ChnStr": "也不是谁的错 谎言再多 基于你还爱我",
+      "Pinyin": "也[yě]不[bù]是[shì]谁[shuí]的[de]错[cuò] 谎[huǎng]言[yán]再[zài]多[duō] 基[jī]于[yú]你[nǐ]还[huán]爱[ài]我[wǒ]",
+      "EngStr": "It's no one's fault, no matter how many lies, they are based on the fact that you still love me"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "美丽的泡沫 虽然一刹花火",
+      "Pinyin": "美[měi]丽[lì]的[de]泡[pào]沫[mò] 虽[suī]然[rán]一[yī]刹[chà]花[huā]火[huǒ]",
+      "EngStr": "The beautiful bubbles, though fleeting like fireworks"
+    },
+    {
+      "ChnStr": "你所有承诺 虽然都太脆弱",
+      "Pinyin": "你[nǐ]所[suǒ]有[yǒu]承[chéng]诺[nuò] 虽[suī]然[rán]都[dū]太[tài]脆[cuì]弱[ruò]",
+      "EngStr": "All your promises, though too fragile"
+    },
+    {
+      "ChnStr": "爱本是泡沫 如果能够看破 有什么难过",
+      "Pinyin": "爱[ài]本[běn]是[shì]泡[pào]沫[mò] 如[rú]果[guǒ]能[néng]够[gòu]看[kàn]破[pò] 有[yǒu]什[shí]么[mó]难[nán]过[guò]",
+      "EngStr": "Love is bubbles, if you can see through it, what's there to be sad about"
+    },
+    {
+      "ChnStr": "再美的花朵 盛开过就凋落",
+      "Pinyin": "再[zài]美[měi]的[de]花[huā]朵[duǒ] 盛[shèng]开[kāi]过[guò]就[jiù]凋[diāo]落[luò]",
+      "EngStr": "No matter how beautiful the flowers are, they bloom and then fall"
+    },
+    {
+      "ChnStr": "再亮眼的星 一闪过就坠落",
+      "Pinyin": "再[zài]亮[liàng]眼[yǎn]的[de]星[xīng] 一[yī]闪[shǎn]过[guò]就[jiù]坠[zhuì]落[luò]",
+      "EngStr": "No matter how bright the stars are, they fall after a flash"
+    },
+    {
+      "ChnStr": "爱本是泡沫 如果能够看破 有什么难过",
+      "Pinyin": "爱[ài]本[běn]是[shì]泡[pào]沫[mò] 如[rú]果[guǒ]能[néng]够[gòu]看[kàn]破[pò] 有[yǒu]什[shí]么[mó]难[nán]过[guò]",
+      "EngStr": "Love is bubbles, if you can see through it, what's there to be sad about"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "为什么难过 有什么难过 为什么难过",
+      "Pinyin": "为[wéi]什[shí]么[mó]难[nán]过[guò] 有[yǒu]什[shí]么[mó]难[nán]过[guò] 为[wéi]什[shí]么[mó]难[nán]过[guò]",
+      "EngStr": "Why be sad, what is there to be sad about, why be sad"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "全都是泡沫 只一刹的花火",
+      "Pinyin": "全[quán]都[dū]是[shì]泡[pào]沫[mò] 只[zhī]一[yī]刹[chà]的[de]花[huā]火[huǒ]",
+      "EngStr": "It's all bubbles, just a fleeting moment of fireworks"
+    },
+    {
+      "ChnStr": "你所有承诺 全部都太脆弱",
+      "Pinyin": "你[nǐ]所[suǒ]有[yǒu]承[chéng]诺[nuò] 全[quán]部[bù]都[dū]太[tài]脆[cuì]弱[ruò]",
+      "EngStr": "All your promises, they're all too fragile"
+    },
+    {
+      "ChnStr": "而你的轮廓 怪我没有看破 才如此难过",
+      "Pinyin": "而[ér]你[nǐ]的[de]轮[lún]廓[kuò] 怪[guài]我[wǒ]没[méi]有[yǒu]看[kàn]破[pò] 才[cái]如[rú]此[cǐ]难[nán]过[guò]",
+      "EngStr": "And your silhouette, I blame myself for not seeing through it, that's why I'm so sad"
+    },
+    {
+      "ChnStr": "相爱的把握 要如何再搜索",
+      "Pinyin": "相[xiāng]爱[ài]的[de]把[bǎ]握[wò] 要[yào]如[rú]何[hé]再[zài]搜[sōu]索[suǒ]",
+      "EngStr": "How can I search for the grasp of love again"
+    },
+    {
+      "ChnStr": "相拥著寂寞 难道就不寂寞",
+      "Pinyin": "相[xiāng]拥[yōng]著[zhù]寂[jì]寞[mò] 难[nán]道[dào]就[jiù]不[bù]寂[jì]寞[mò]",
+      "EngStr": "Embracing loneliness, does that mean it's no longer lonely"
+    },
+    {
+      "ChnStr": "爱本是泡沫 怪我没有看破 才如此难过",
+      "Pinyin": "爱[ài]本[běn]是[shì]泡[pào]沫[mò] 怪[guài]我[wǒ]没[méi]有[yǒu]看[kàn]破[pò] 才[cái]如[rú]此[cǐ]难[nán]过[guò]",
+      "EngStr": "Love is bubbles, I blame myself for not seeing through it, that's why I'm so sad"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "在雨下的泡沫 一触就破",
+      "Pinyin": "在[zài]雨[yǔ]下[xià]的[de]泡[pào]沫[mò] 一[yī]触[chù]就[jiù]破[pò]",
+      "EngStr": "Bubbles under the rain break with a touch"
+    },
+    {
+      "ChnStr": "当初炽热的心 早已沉没",
+      "Pinyin": "当[dāng]初[chū]炽[chì]热[rè]的[de]心[xīn] 早[zǎo]已[yǐ]沉[chén]没[méi]",
+      "EngStr": "The once burning heart has long sunk"
+    },
+    {
+      "ChnStr": "说什么你爱我 如果骗我 我宁愿你沉默",
+      "Pinyin": "说[shuō]什[shí]么[mó]你[nǐ]爱[ài]我[wǒ] 如[rú]果[guǒ]骗[piàn]我[wǒ] 我[wǒ]宁[níng]愿[yuàn]你[nǐ]沉[chén]默[mò]",
+      "EngStr": "Saying you love me, but if you lie, I'd rather you remain silent"
+    }
+  ]
 }

@@ -1,57 +1,210 @@
 {
-    "lyrics": [
-      { "ChnStr": "塞納河畔 左岸的咖啡", "EngStr": "By the Seine River, coffee on the left bank" },
-      { "ChnStr": "我手一杯 品嚐你的美", "EngStr": "I hold a cup, savoring your beauty" },
-      { "ChnStr": "留下唇印的嘴", "EngStr": "A mouth with a lipstick mark left" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "花店玫瑰 名字寫錯誰", "EngStr": "A rose from the flower shop, who wrote the wrong name?" },
-      { "ChnStr": "告白氣球 風吹到對街", "EngStr": "A confession balloon, blown to the opposite street" },
-      { "ChnStr": "微笑在天上飛", "EngStr": "A smile flying in the sky" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "你說你有點難追 想讓我知難而退", "EngStr": "You said you are a bit hard to chase, hoping I would give up" },
-      { "ChnStr": "禮物不需挑最貴 只要香榭的落葉", "EngStr": "No need to choose the most expensive gift, just the leaves from Champs-Élysées" },
-      { "ChnStr": "營造浪漫的約會 不害怕搞砸一切", "EngStr": "Creating a romantic date, not afraid of messing everything up" },
-      { "ChnStr": "擁有你就擁有 全世界", "EngStr": "With you, I have the whole world" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "親愛的 愛上你 從那天起", "EngStr": "Darling, I fell in love with you from that day" },
-      { "ChnStr": "甜蜜的很輕易", "EngStr": "Sweetness comes so easily" },
-      { "ChnStr": "親愛的 別任性 你的眼睛", "EngStr": "Darling, don't be willful, your eyes" },
-      { "ChnStr": "在說我願意", "EngStr": "Are saying, 'I am willing'" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "塞納河畔 左岸的咖啡", "EngStr": "By the Seine River, coffee on the left bank" },
-      { "ChnStr": "我手一杯 品嚐你的美", "EngStr": "I hold a cup, savoring your beauty" },
-      { "ChnStr": "留下唇印的嘴", "EngStr": "A mouth with a lipstick mark left" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "花店玫瑰 名字寫錯誰", "EngStr": "A rose from the flower shop, who wrote the wrong name?" },
-      { "ChnStr": "告白氣球 風吹到對街", "EngStr": "A confession balloon, blown to the opposite street" },
-      { "ChnStr": "微笑在天上飛", "EngStr": "A smile flying in the sky" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "你說你有點難追 想讓我知難而退", "EngStr": "You said you are a bit hard to chase, hoping I would give up" },
-      { "ChnStr": "禮物不需挑最貴 只要香榭的落葉", "EngStr": "No need to choose the most expensive gift, just the leaves from Champs-Élysées" },
-      { "ChnStr": "營造浪漫的約會 不害怕搞砸一切", "EngStr": "Creating a romantic date, not afraid of messing everything up" },
-      { "ChnStr": "擁有你就擁有 全世界", "EngStr": "With you, I have the whole world" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "親愛的 愛上你 從那天起", "EngStr": "Darling, I fell in love with you from that day" },
-      { "ChnStr": "甜蜜的很輕易", "EngStr": "Sweetness comes so easily" },
-      { "ChnStr": "親愛的 別任性 你的眼睛", "EngStr": "Darling, don't be willful, your eyes" },
-      { "ChnStr": "在說我願意", "EngStr": "Are saying, 'I am willing'" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "親愛的 愛上你 戀愛日記", "EngStr": "Darling, falling in love with you, a love diary" },
-      { "ChnStr": "飄香水的回憶", "EngStr": "Memories of the scent of perfume" },
-      { "ChnStr": "一整瓶 的夢境 全都有你", "EngStr": "A whole bottle of dreams, all filled with you" },
-      { "ChnStr": "攪拌在一起", "EngStr": "Stirred together" },
-      { "ChnStr": "", "EngStr": "" },
-
-      { "ChnStr": "親愛的別任性 你的眼睛", "EngStr": "Darling, don't be willful, your eyes" },
-      { "ChnStr": "在說我願意", "EngStr": "Are saying, 'I am willing'" }
-    ]
-  }
-  
+  "lyrics": [
+    {
+      "ChnStr": "塞納河畔 左岸的咖啡",
+      "Pinyin": "塞[sāi]納[nà]河[hé]畔[pàn] 左[zuǒ]岸[àn]的[de]咖[kā]啡[fēi]",
+      "EngStr": "By the Seine River, coffee on the left bank"
+    },
+    {
+      "ChnStr": "我手一杯 品嚐你的美",
+      "Pinyin": "我[wǒ]手[shǒu]一[yī]杯[bēi] 品[pǐn]嚐[cháng]你[nǐ]的[de]美[měi]",
+      "EngStr": "I hold a cup, savoring your beauty"
+    },
+    {
+      "ChnStr": "留下唇印的嘴",
+      "Pinyin": "留[liú]下[xià]唇[chún]印[yìn]的[de]嘴[zuǐ]",
+      "EngStr": "A mouth with a lipstick mark left"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "花店玫瑰 名字寫錯誰",
+      "Pinyin": "花[huā]店[diàn]玫[méi]瑰[guī] 名[míng]字[zì]寫[xiě]錯[cuò]誰[shuí]",
+      "EngStr": "A rose from the flower shop, who wrote the wrong name?"
+    },
+    {
+      "ChnStr": "告白氣球 風吹到對街",
+      "Pinyin": "告[gào]白[bái]氣[qì]球[qiú] 風[fēng]吹[chuī]到[dào]對[duì]街[jiē]",
+      "EngStr": "A confession balloon, blown to the opposite street"
+    },
+    {
+      "ChnStr": "微笑在天上飛",
+      "Pinyin": "微[wēi]笑[xiào]在[zài]天[tiān]上[shàng]飛[fēi]",
+      "EngStr": "A smile flying in the sky"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "你說你有點難追 想讓我知難而退",
+      "Pinyin": "你[nǐ]說[shuō]你[nǐ]有[yǒu]點[diǎn]難[nán]追[zhuī] 想[xiǎng]讓[ràng]我[wǒ]知[zhī]難[nán]而[ér]退[tuì]",
+      "EngStr": "You said you are a bit hard to chase, hoping I would give up"
+    },
+    {
+      "ChnStr": "禮物不需挑最貴 只要香榭的落葉",
+      "Pinyin": "禮[lǐ]物[wù]不[bù]需[xū]挑[tiāo]最[zuì]貴[guì] 只[zhī]要[yào]香[xiāng]榭[xiè]的[de]落[luò]葉[yè]",
+      "EngStr": "No need to choose the most expensive gift, just the leaves from Champs-Élysées"
+    },
+    {
+      "ChnStr": "營造浪漫的約會 不害怕搞砸一切",
+      "Pinyin": "營[yíng]造[zào]浪[làng]漫[màn]的[de]約[yuē]會[huì] 不[bù]害[hài]怕[pà]搞[gǎo]砸[zá]一[yī]切[qiē]",
+      "EngStr": "Creating a romantic date, not afraid of messing everything up"
+    },
+    {
+      "ChnStr": "擁有你就擁有 全世界",
+      "Pinyin": "擁[yōng]有[yǒu]你[nǐ]就[jiù]擁[yōng]有[yǒu] 全[quán]世[shì]界[jiè]",
+      "EngStr": "With you, I have the whole world"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "親愛的 愛上你 從那天起",
+      "Pinyin": "親[qīn]愛[ài]的[de] 愛[ài]上[shàng]你[nǐ] 從[cóng]那[nà]天[tiān]起[qǐ]",
+      "EngStr": "Darling, I fell in love with you from that day"
+    },
+    {
+      "ChnStr": "甜蜜的很輕易",
+      "Pinyin": "甜[tián]蜜[mì]的[de]很[hěn]輕[qīng]易[yì]",
+      "EngStr": "Sweetness comes so easily"
+    },
+    {
+      "ChnStr": "親愛的 別任性 你的眼睛",
+      "Pinyin": "親[qīn]愛[ài]的[de] 別[bié]任[rèn]性[xìng] 你[nǐ]的[de]眼[yǎn]睛[jīng]",
+      "EngStr": "Darling, don't be willful, your eyes"
+    },
+    {
+      "ChnStr": "在說我願意",
+      "Pinyin": "在[zài]說[shuō]我[wǒ]願[yuàn]意[yì]",
+      "EngStr": "Are saying, 'I am willing'"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "塞納河畔 左岸的咖啡",
+      "Pinyin": "塞[sāi]納[nà]河[hé]畔[pàn] 左[zuǒ]岸[àn]的[de]咖[kā]啡[fēi]",
+      "EngStr": "By the Seine River, coffee on the left bank"
+    },
+    {
+      "ChnStr": "我手一杯 品嚐你的美",
+      "Pinyin": "我[wǒ]手[shǒu]一[yī]杯[bēi] 品[pǐn]嚐[cháng]你[nǐ]的[de]美[měi]",
+      "EngStr": "I hold a cup, savoring your beauty"
+    },
+    {
+      "ChnStr": "留下唇印的嘴",
+      "Pinyin": "留[liú]下[xià]唇[chún]印[yìn]的[de]嘴[zuǐ]",
+      "EngStr": "A mouth with a lipstick mark left"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "花店玫瑰 名字寫錯誰",
+      "Pinyin": "花[huā]店[diàn]玫[méi]瑰[guī] 名[míng]字[zì]寫[xiě]錯[cuò]誰[shuí]",
+      "EngStr": "A rose from the flower shop, who wrote the wrong name?"
+    },
+    {
+      "ChnStr": "告白氣球 風吹到對街",
+      "Pinyin": "告[gào]白[bái]氣[qì]球[qiú] 風[fēng]吹[chuī]到[dào]對[duì]街[jiē]",
+      "EngStr": "A confession balloon, blown to the opposite street"
+    },
+    {
+      "ChnStr": "微笑在天上飛",
+      "Pinyin": "微[wēi]笑[xiào]在[zài]天[tiān]上[shàng]飛[fēi]",
+      "EngStr": "A smile flying in the sky"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "你說你有點難追 想讓我知難而退",
+      "Pinyin": "你[nǐ]說[shuō]你[nǐ]有[yǒu]點[diǎn]難[nán]追[zhuī] 想[xiǎng]讓[ràng]我[wǒ]知[zhī]難[nán]而[ér]退[tuì]",
+      "EngStr": "You said you are a bit hard to chase, hoping I would give up"
+    },
+    {
+      "ChnStr": "禮物不需挑最貴 只要香榭的落葉",
+      "Pinyin": "禮[lǐ]物[wù]不[bù]需[xū]挑[tiāo]最[zuì]貴[guì] 只[zhī]要[yào]香[xiāng]榭[xiè]的[de]落[luò]葉[yè]",
+      "EngStr": "No need to choose the most expensive gift, just the leaves from Champs-Élysées"
+    },
+    {
+      "ChnStr": "營造浪漫的約會 不害怕搞砸一切",
+      "Pinyin": "營[yíng]造[zào]浪[làng]漫[màn]的[de]約[yuē]會[huì] 不[bù]害[hài]怕[pà]搞[gǎo]砸[zá]一[yī]切[qiē]",
+      "EngStr": "Creating a romantic date, not afraid of messing everything up"
+    },
+    {
+      "ChnStr": "擁有你就擁有 全世界",
+      "Pinyin": "擁[yōng]有[yǒu]你[nǐ]就[jiù]擁[yōng]有[yǒu] 全[quán]世[shì]界[jiè]",
+      "EngStr": "With you, I have the whole world"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "親愛的 愛上你 從那天起",
+      "Pinyin": "親[qīn]愛[ài]的[de] 愛[ài]上[shàng]你[nǐ] 從[cóng]那[nà]天[tiān]起[qǐ]",
+      "EngStr": "Darling, I fell in love with you from that day"
+    },
+    {
+      "ChnStr": "甜蜜的很輕易",
+      "Pinyin": "甜[tián]蜜[mì]的[de]很[hěn]輕[qīng]易[yì]",
+      "EngStr": "Sweetness comes so easily"
+    },
+    {
+      "ChnStr": "親愛的 別任性 你的眼睛",
+      "Pinyin": "親[qīn]愛[ài]的[de] 別[bié]任[rèn]性[xìng] 你[nǐ]的[de]眼[yǎn]睛[jīng]",
+      "EngStr": "Darling, don't be willful, your eyes"
+    },
+    {
+      "ChnStr": "在說我願意",
+      "Pinyin": "在[zài]說[shuō]我[wǒ]願[yuàn]意[yì]",
+      "EngStr": "Are saying, 'I am willing'"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "親愛的 愛上你 戀愛日記",
+      "Pinyin": "親[qīn]愛[ài]的[de] 愛[ài]上[shàng]你[nǐ] 戀[liàn]愛[ài]日[rì]記[jì]",
+      "EngStr": "Darling, falling in love with you, a love diary"
+    },
+    {
+      "ChnStr": "飄香水的回憶",
+      "Pinyin": "飄[piāo]香[xiāng]水[shuǐ]的[de]回[huí]憶[yì]",
+      "EngStr": "Memories of the scent of perfume"
+    },
+    {
+      "ChnStr": "一整瓶 的夢境 全都有你",
+      "Pinyin": "一[yī]整[zhěng]瓶[píng] 的[de]夢[mèng]境[jìng] 全[quán]都[dū]有[yǒu]你[nǐ]",
+      "EngStr": "A whole bottle of dreams, all filled with you"
+    },
+    {
+      "ChnStr": "攪拌在一起",
+      "Pinyin": "攪[jiǎo]拌[bàn]在[zài]一[yī]起[qǐ]",
+      "EngStr": "Stirred together"
+    },
+    {
+      "ChnStr": "",
+      "EngStr": ""
+    },
+    {
+      "ChnStr": "親愛的別任性 你的眼睛",
+      "Pinyin": "親[qīn]愛[ài]的[de]別[bié]任[rèn]性[xìng] 你[nǐ]的[de]眼[yǎn]睛[jīng]",
+      "EngStr": "Darling, don't be willful, your eyes"
+    },
+    {
+      "ChnStr": "在說我願意",
+      "Pinyin": "在[zài]說[shuō]我[wǒ]願[yuàn]意[yì]",
+      "EngStr": "Are saying, 'I am willing'"
+    }
+  ]
+}
