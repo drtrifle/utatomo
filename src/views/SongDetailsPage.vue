@@ -3,39 +3,43 @@
     <button @click="$router.push('/songs')" class="back-button">← Back to Songs</button>
 
     <div v-if="song" class="song-details-container">
-      <!-- Sticky Video -->
-      <StickyVideo :youtubeUrl="song.youtubeUrl" />
+      <div class="container-padding">
+        <!-- Sticky Video -->
+        <StickyVideo :youtubeUrl="song.youtubeUrl" />
 
-      <!-- Widget Container -->
-      <div class="widget-container">
-        <ToggleWidget header="English Lyrics" :options="['On', 'Off']" v-model="engLyricsIdx" />
-        <ToggleWidget header="Font Size" :options="['S', 'M', 'L']" v-model="fontSizeIdx" />
-      </div>
-
-      <!-- Scrollable Lyrics -->
-      <ScrollableContainer :maxHeight="'calc(100vh - 300px)'">
-        <h2 v-once>Lyrics</h2>
-        <div v-if="lyrics">
-          <div v-for="(line, index) in lyrics" :key="index" :class="fontSizeClass">
-            <div v-if="!line.isEmpty()">
-              <div class="line-container">
-                <div class="chinese-line">
-                  <template v-for="(segment, idx) in line.getAnnotatedText()" :key="idx">
-                    <div class="char-container">
-                      <span class="ruby">{{ segment.ruby }}</span>
-                      <span class="text">{{ segment.text }}</span>
-                    </div>
-                  </template>
-                </div>
-                <small v-if="engLyricsIdx == 0">{{ line.EngStr }}</small>
-              </div>
-            </div>
-            <div v-else>&nbsp;</div>
-            <br />
+        <!-- Widget Container -->
+        <div class="widget-container">
+          <div class="widget-wrap">
+            <ToggleWidget header="English Lyrics" :options="['On', 'Off']" v-model="engLyricsIdx" />
+            <ToggleWidget header="Font Size" :options="['S', 'M', 'L']" v-model="fontSizeIdx" />
           </div>
         </div>
-        <p v-else class="loading">Loading lyrics...</p>
-      </ScrollableContainer>
+
+        <!-- Scrollable Lyrics -->
+        <ScrollableContainer :maxHeight="'calc(100vh - 300px)'">
+          <h2 v-once>Lyrics</h2>
+          <div v-if="lyrics">
+            <div v-for="(line, index) in lyrics" :key="index" :class="fontSizeClass">
+              <div v-if="!line.isEmpty()">
+                <div class="line-container">
+                  <div class="chinese-line">
+                    <template v-for="(segment, idx) in line.getAnnotatedText()" :key="idx">
+                      <div class="char-container">
+                        <span class="ruby">{{ segment.ruby }}</span>
+                        <span class="text">{{ segment.text }}</span>
+                      </div>
+                    </template>
+                  </div>
+                  <small v-if="engLyricsIdx == 0">{{ line.EngStr }}</small>
+                </div>
+              </div>
+              <div v-else>&nbsp;</div>
+              <br />
+            </div>
+          </div>
+          <p v-else class="loading">Loading lyrics...</p>
+        </ScrollableContainer>
+      </div>
     </div>
     <div v-else>
       <!-- LoadingSpinner -->
@@ -121,6 +125,10 @@ export default {
   overflow: hidden;
 }
 
+.container-padding {
+  padding: 20px;
+}
+
 .back-button {
   margin-bottom: 20px;
   /* Adjust the value to control space */
@@ -142,9 +150,17 @@ export default {
 
 .widget-container {
   display: flex;
-  gap: 15px;
-  justify-content: space-between;
+  justify-content: center;
+  width: 100%;
   margin-bottom: 20px;
+}
+
+.widget-wrap {
+  display: flex;
+  gap: 15px;
+  max-width: 600px;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .loading {

@@ -9,6 +9,11 @@ const baseRoutes = [
   { path: '/', component: HomePage }, // Default route
   { path: '/songs', component: SongListPage },
   { path: '/song/:id', component: SongDetailsPage },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('../views/AboutPage.vue')
+  }
 ];
 
 const devRoutes = [
