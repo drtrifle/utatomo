@@ -20,10 +20,10 @@
             <div v-if="!line.isEmpty()">
               <div class="line-container">
                 <div class="chinese-line">
-                  <template v-for="(char, idx) in parsePinyin(line.getPinyin())" :key="idx">
+                  <template v-for="(segment, idx) in line.getAnnotatedText()" :key="idx">
                     <div class="char-container">
-                      <span class="pinyin">{{ char.pinyin }}</span>
-                      <span class="hanzi">{{ char.hanzi }}</span>
+                      <span class="ruby">{{ segment.ruby }}</span>
+                      <span class="text">{{ segment.text }}</span>
                     </div>
                   </template>
                 </div>
@@ -94,50 +94,6 @@ export default {
       } catch (error) {
         console.error('Error loading song details:', error);
       }
-    },
-    parsePinyin(pinyinStr) {
-      if (!pinyinStr) return [];
-      const result = [];
-      let tempStr = '';
-
-      const isChineseChar = (char) => /[\u4e00-\u9fff]/.test(char);
-      
-      for (let i = 0; i < pinyinStr.length; i++) {
-        const char = pinyinStr[i];
-        
-        if (isChineseChar(char)) {
-          // If we have accumulated non-Chinese text, push it
-          if (tempStr) {
-            result.push({ hanzi: tempStr, pinyin: '' });
-            tempStr = '';
-          }
-          
-          // Find the pinyin annotation for this character
-          const nextBracket = pinyinStr.indexOf('[', i);
-          if (nextBracket === i + 1) { // Make sure bracket immediately follows the character
-            const closeBracketIndex = pinyinStr.indexOf(']', nextBracket);
-            if (closeBracketIndex !== -1) {
-              const pinyin = pinyinStr.slice(nextBracket + 1, closeBracketIndex);
-              result.push({ hanzi: char, pinyin });
-              i = closeBracketIndex; // Skip to end of pinyin bracket
-              continue;
-            }
-          }
-          
-          // If no pinyin annotation found, just add the character
-          result.push({ hanzi: char, pinyin: '' });
-        } else if (char !== '[' && char !== ']') {
-          // Accumulate non-Chinese characters
-          tempStr += char;
-        }
-      }
-      
-      // Push any remaining non-Chinese text
-      if (tempStr) {
-        result.push({ hanzi: tempStr, pinyin: '' });
-      }
-      
-      return result;
     },
   },
   created() {
@@ -240,27 +196,26 @@ body {
   min-width: 1em;
 }
 
-.pinyin {
+.ruby {
   font-size: 0.7em;
   color: #666;
   height: 1.2em;
   text-align: center;
 }
 
-.hanzi {
+.text {
   font-size: 1.2em;
 }
 
-/* Update existing font size classes to affect the hanzi size */
-.fontSmall .hanzi {
+.fontSmall .text {
   font-size: 1em;
 }
 
-.fontMedium .hanzi {
+.fontMedium .text {
   font-size: 1.2em;
 }
 
-.fontLarge .hanzi {
+.fontLarge .text {
   font-size: 1.4em;
 }
 </style>
