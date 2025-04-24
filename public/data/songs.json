@@ -17,7 +17,7 @@
     "id": "ASI-001",
     "title": "热爱105°C的你",
     "artist": "阿肆 (A Si)",
-    "youtubeUrl": "https://www.youtube.com/watch?v=UXTFZCo2uuY",
+    "youtubeUrl": "https://www.youtube.com/watch?v=_FVvA1lUkQ8",
     "duration": "0:00"
   },
   {
@@ -70,10 +70,24 @@
     "duration": "0:00"
   },
   {
+    "id": "MAYDAY-001",
+    "title": "温柔 (Tenderness)",
+    "artist": "五月天 (Mayday)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=nWb_X3ZJQjw",
+    "duration": "0:00"
+  },
+  {
     "id": "MIXER-001",
     "title": "嗜愛動物 (Loveholic)",
     "artist": "麋先生 (Mixer)",
     "youtubeUrl": "https://www.youtube.com/watch?v=4JNb4fiT1VA",
+    "duration": "0:00"
+  },
+  {
+    "id": "POWER-001",
+    "title": "明天的明天的明天",
+    "artist": "動力火車 (Power Station)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=Z_GwKSC1kF8",
     "duration": "0:00"
   },
   {
@@ -88,6 +102,20 @@
     "title": "年少有為 (If I Were Young)",
     "artist": "李榮浩 (Ronghao Li)",
     "youtubeUrl": "https://www.youtube.com/watch?v=Dnj5Tcpev0Q",
+    "duration": "0:00"
+  },
+  {
+    "id": "WAKIN-001",
+    "title": "朋友 (Friend)",
+    "artist": "周华健 (Wakin Chau)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=6lbPgfKK7m4",
+    "duration": "0:00"
+  },
+  {
+    "id": "ZHANG-001",
+    "title": "阳光彩虹小白马 (Sunshine, Rainbow, White pony)",
+    "artist": "大張偉 (Wowkie Zhang)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=YG4iTGjuoKw",
     "duration": "0:00"
   }
 ]

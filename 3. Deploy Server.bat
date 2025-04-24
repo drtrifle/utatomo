@@ -5,7 +5,8 @@ cd /d "D:\Unity Projects\UtaTomo"
 :: Ensure we have all dependencies
 call npm install
 
-:: Build and deploy
+:: Set production environment and build
+SET NODE_ENV=production
 call npm run build
 call npm run deploy
 
