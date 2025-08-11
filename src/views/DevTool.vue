@@ -100,7 +100,7 @@ export default defineComponent({
             this.lyricsData = JSON.parse(e.target.result as string);
             this.jsonOutput = "";
           }
-        } catch (err) {
+        } catch (_err) {
           alert("Error parsing JSON file.");
         }
       };
