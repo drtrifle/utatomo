@@ -6,7 +6,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 // Mock router
 const router = createRouter({
   history: createWebHistory(),
-  routes: [],
+  routes: [{ path: '/test', component: { template: '<div></div>' } }],
 });
 
 describe('LinkButton.vue', () => {
@@ -30,7 +30,8 @@ describe('LinkButton.vue', () => {
     expect(wrapper.find('a').attributes('href')).toBe('/test');
 
     // Check if the style is applied
-    expect(wrapper.attributes('style')).toContain('background-color: #ff0000');
-    expect(wrapper.attributes('style')).toContain('--hover-color: #cc0000');
+    const style = wrapper.attributes('style');
+    expect(style).toContain('background-color: rgb(255, 0, 0)');
+    expect(style).toContain('--hover-color: #cc0000');
   });
 });
