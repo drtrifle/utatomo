@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(song, index) in songs" :key="song.id" @click="goToSongDetails(song.id)">
+                <tr v-for="(song, index) in songInfos" :key="song.id" @click="goToSongDetails(song.id)">
                     <td>{{ index + 1 }}</td>
                     <td :class="styles.songTitle">
                         <img :src="song.getThumbnailUrl()" alt="Thumbnail" :class="styles.thumbnail" />
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { SongInfo } from '../models/SongInfo';
 import { fetchSongInfos } from '../services/songService';
 import styles from '../styles/songList.module.css'; // Import the CSS Module
 
@@ -35,11 +36,12 @@ export default {
     name: 'SongListPage',
     data() {
         return {
-            songs: [],
+            /** @type {import('../models/SongInfo').SongInfo[]} */
+            songInfos: [],
         };
     },
     async created() {
-        this.songs = await fetchSongInfos();
+        this.songInfos = await fetchSongInfos();
     },
     methods: {
         goToSongDetails(songId) {
