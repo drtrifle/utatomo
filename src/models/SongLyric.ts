@@ -20,12 +20,12 @@ export class SongLyric {
     this.Pinyin = data.Pinyin || '';
   }
 
-  getAnnotatedText() {
+  getAnnotatedText(): AnnotatedText[] {
     if (!this.Pinyin) return [];
-    const result = [];
+    const result: AnnotatedText[] = [];
     let plainText = '';
 
-    const isHanzi = (char) => /[\u4e00-\u9fff]/.test(char);
+    const isHanzi = (char: string) => /[\u4e00-\u9fff]/.test(char);
     
     for (let i = 0; i < this.Pinyin.length; i++) {
       const char = this.Pinyin[i];

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
 import HomePage from '../views/HomePage.vue';
 import SongListPage from '../views/SongListPage.vue';
 import SongDetailsPage from '../views/SongDetailsPage.vue';
@@ -21,7 +21,7 @@ const devRoutes = [
     path: '/devtool',
     name: 'devtool',
     component: () => import('../views/DevTool.vue'),
-    beforeEnter: (to, from, next) => {
+    beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
       if (!isDev) {
         next({ name: 'home' }); // Redirect to home in production
       } else {
