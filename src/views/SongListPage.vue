@@ -27,24 +27,24 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { SongInfo } from '../models/SongInfo';
 import { fetchSongInfos } from '../services/songService';
 import styles from '../styles/songList.module.css'; // Import the CSS Module
 
-export default {
+export default defineComponent({
     name: 'SongListPage',
     data() {
         return {
-            /** @type {import('../models/SongInfo').SongInfo[]} */
-            songInfos: [],
+            songInfos: [] as SongInfo[],
         };
     },
     async created() {
         this.songInfos = await fetchSongInfos();
     },
     methods: {
-        goToSongDetails(songId) {
+        goToSongDetails(songId: string) {
             this.$router.push(`/song/${songId}`);
         },
     },
@@ -53,5 +53,5 @@ export default {
             return styles;
         },
     },
-};
+});
 </script>

@@ -1,16 +1,31 @@
+interface SongLyricData {
+  ChnStr: string;
+  EngStr: string;
+  Pinyin: string;
+}
+
+interface AnnotatedText {
+  text: string;
+  ruby: string;
+}
+
 export class SongLyric {
-  constructor(data = {}) {
+  ChnStr: string;
+  EngStr: string;
+  Pinyin: string;
+
+  constructor(data: Partial<SongLyricData> = {}) {
     this.ChnStr = data.ChnStr || '';
     this.EngStr = data.EngStr || '';
     this.Pinyin = data.Pinyin || '';
   }
 
-  getAnnotatedText() {
+  getAnnotatedText(): AnnotatedText[] {
     if (!this.Pinyin) return [];
-    const result = [];
+    const result: AnnotatedText[] = [];
     let plainText = '';
 
-    const isHanzi = (char) => /[\u4e00-\u9fff]/.test(char);
+    const isHanzi = (char: string) => /[\u4e00-\u9fff]/.test(char);
     
     for (let i = 0; i < this.Pinyin.length; i++) {
       const char = this.Pinyin[i];

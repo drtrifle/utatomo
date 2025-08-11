@@ -1,7 +1,7 @@
 import { SongLyric } from '../models/SongLyric';
 import { SongInfo } from '../models/SongInfo';
 
-export async function fetchSongInfos() {
+export async function fetchSongInfos(): Promise<SongInfo[]> {
   try {
     const baseUrl = import.meta.env.DEV ? '' : '/utatomo';
     console.log('Fetching songs from:', `${baseUrl}/data/songInfos.json`);
@@ -12,14 +12,14 @@ export async function fetchSongInfos() {
     }
     const data = await response.json();
     console.log('Fetched songs:', data);
-    return data.map(s => new SongInfo(s));
+    return data.map((s: any) => new SongInfo(s));
   } catch (error) {
     console.error('Error in fetchSongs:', error);
     return [];
   }
 }
 
-export const fetchSongById = async (songId) => {
+export const fetchSongById = async (songId: string): Promise<SongInfo | undefined> => {
   console.log(`Fetching song with ID: ${songId}`); // Debug log
   const songs = await fetchSongInfos();
   console.log('Fetched songs:', songs); // Debug log
@@ -28,7 +28,7 @@ export const fetchSongById = async (songId) => {
   return song;
 };
 
-export const fetchLyricsById = async (songId) => {
+export const fetchLyricsById = async (songId: string): Promise<SongLyric[] | null> => {
   try {
     const baseUrl = import.meta.env.DEV ? '' : '/utatomo';
     const response = await fetch(`${baseUrl}/data/lyrics/${songId}.json`);
@@ -39,7 +39,7 @@ export const fetchLyricsById = async (songId) => {
     console.log(`Fetched lyrics for ID ${songId}:`, data);
 
     // Transform each line into a SongLyric object with Pinyin
-    return data.lyrics.map(line => new SongLyric(line));
+    return data.lyrics.map((line: any) => new SongLyric(line));
   } catch (error) {
     console.error('Error fetching lyrics:', error);
     return null;

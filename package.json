@@ -7,7 +7,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
     "core-js": "^3.8.3",
@@ -16,12 +17,16 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@types/node": "^24.2.1",
+    "@types/pinyin": "^2.10.2",
     "@vitejs/plugin-vue": "^5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
     "gh-pages": "^6.3.0",
+    "pinyin": "^4.0.0-alpha.2",
+    "typescript": "^5.9.2",
     "vite": "^5.0.0",
-    "pinyin": "^4.0.0-alpha.2"
+    "vue-tsc": "^3.0.5"
   },
   "eslintConfig": {
     "root": true,

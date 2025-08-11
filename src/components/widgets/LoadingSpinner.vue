@@ -8,26 +8,30 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType, CSSProperties } from 'vue';
+
+type SpinnerSize = 'small' | 'medium' | 'large';
+
+export default defineComponent({
   name: 'LoadingSpinner',
   props: {
     message: {
-      type: String,
+      type: String as PropType<string>,
       default: '',
     },
     size: {
-      type: String,
+      type: String as PropType<SpinnerSize>,
       default: 'medium', // small, medium, large
     },
     color: {
-      type: String,
+      type: String as PropType<string>,
       default: '#3498db', // default blue
     },
   },
   computed: {
-    spinnerStyle() {
-      const sizeMap = {
+    spinnerStyle(): CSSProperties {
+      const sizeMap: Record<SpinnerSize, string> = {
         small: '30px',
         medium: '50px',
         large: '70px',
@@ -41,7 +45,7 @@ export default {
       };
     },
   },
-};
+});
 </script>
 
 <style scoped>

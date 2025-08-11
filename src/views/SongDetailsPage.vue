@@ -48,9 +48,11 @@
   </div>
 </template>
 
-<script>
-import { defineAsyncComponent } from 'vue';
+<script lang="ts">
+import { defineComponent, defineAsyncComponent } from 'vue';
 import { fetchSongById, fetchLyricsById } from '../services/songService';
+import { SongInfo } from '../models/SongInfo';
+import { SongLyric } from '../models/SongLyric';
 
 import LoadingSpinner from '@/components/widgets/LoadingSpinner.vue';
 const StickyVideo = defineAsyncComponent(() =>
@@ -63,7 +65,7 @@ const ToggleWidget = defineAsyncComponent(() =>
   import('../components/widgets/ToggleWidget.vue')
 );
 
-export default {
+export default defineComponent({
   components: {
     StickyVideo,
     ScrollableContainer,
@@ -72,14 +74,14 @@ export default {
   },
   data() {
     return {
-      song: null,
-      lyrics: null,
+      song: null as SongInfo | null,
+      lyrics: null as SongLyric[] | null,
       engLyricsIdx: 0,
       fontSizeIdx: 1,
     };
   },
   computed: {
-    fontSizeClass() {
+    fontSizeClass(): Record<string, boolean> {
       return {
         fontSmall: this.fontSizeIdx == 0,
         fontMedium: this.fontSizeIdx == 1,
@@ -90,9 +92,10 @@ export default {
   methods: {
     async fetchData() {
       try {
-        const songId = this.$route.params.id;
-        this.song = await fetchSongById(songId);
-        if (this.song) {
+        const songId = this.$route.params.id as string;
+        const fetchedSong = await fetchSongById(songId);
+        if (fetchedSong) {
+          this.song = fetchedSong;
           this.lyrics = await fetchLyricsById(songId);
         }
       } catch (error) {
@@ -103,7 +106,7 @@ export default {
   created() {
     this.fetchData();
   },
-};
+});
 </script>
 
 <style scoped>

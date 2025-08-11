@@ -11,14 +11,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import LinkButton from '../components/widgets/LinkButton.vue';
-export default {
+
+export default defineComponent({
   name: 'HomePage',
   components: {
     LinkButton
   }
-};
+});
 </script>
 
 <style scoped>

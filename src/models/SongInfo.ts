@@ -1,5 +1,21 @@
+interface SongInfoData {
+  id: string;
+  title: string;
+  artist: string;
+  youtubeUrl: string;
+  duration: string;
+  language: string;
+}
+
 export class SongInfo {
-  constructor(data = {}) {
+  id: string;
+  title: string;
+  artist: string;
+  youtubeUrl: string;
+  duration: string;
+  language: string;
+
+  constructor(data: Partial<SongInfoData> = {}) {
     this.id = data.id || '';
     this.title = data.title || '';
     this.artist = data.artist || '';

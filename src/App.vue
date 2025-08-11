@@ -7,15 +7,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import AppHeader from '@/components/layout/AppHeader.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
     AppHeader
   }
-};
+});
 </script>
 
 <style>
