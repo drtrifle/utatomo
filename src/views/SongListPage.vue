@@ -13,7 +13,7 @@
                 <tr v-for="(song, index) in songs" :key="song.id" @click="goToSongDetails(song.id)">
                     <td>{{ index + 1 }}</td>
                     <td :class="styles.songTitle">
-                        <img :src="getThumbnail(song.youtubeUrl)" alt="Thumbnail" :class="styles.thumbnail" />
+                        <img :src="song.getThumbnailUrl()" alt="Thumbnail" :class="styles.thumbnail" />
                         <div :class="styles.titleInfo">
                             <div :class="styles.title">{{ song.title }}</div>
                             <div :class="styles.artist">{{ song.artist }}</div>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { fetchSongs, getYouTubeThumbnail } from '../services/songService';
+import { fetchSongs } from '../services/songService';
 import styles from '../styles/songList.module.css'; // Import the CSS Module
 
 export default {
@@ -42,9 +42,6 @@ export default {
         this.songs = await fetchSongs();
     },
     methods: {
-        getThumbnail(youtubeUrl) {
-            return getYouTubeThumbnail(youtubeUrl);
-        },
         goToSongDetails(songId) {
             this.$router.push(`/song/${songId}`);
         },

@@ -1,4 +1,5 @@
 import { SongLyric } from '../models/SongLyric';
+import { SongInfo } from '../models/SongInfo';
 
 export async function fetchSongs() {
   try {
@@ -11,19 +12,11 @@ export async function fetchSongs() {
     }
     const data = await response.json();
     console.log('Fetched songs:', data);
-    return data;
+    return data.map(s => new SongInfo(s));
   } catch (error) {
     console.error('Error in fetchSongs:', error);
     return [];
   }
-}
-
-export function getYouTubeThumbnail(youtubeUrl) {
-  const videoId = youtubeUrl.split('v=')[1]?.split('&')[0]; // Extract the video ID
-  if (!videoId) {
-    throw new Error('Invalid YouTube URL');
-  }
-  return `https://i3.ytimg.com/vi/${videoId}/default.jpg`;
 }
 
 export const fetchSongById = async (songId) => {
