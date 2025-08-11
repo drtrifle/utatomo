@@ -1,5 +1,20 @@
+interface SongLyricData {
+  ChnStr: string;
+  EngStr: string;
+  Pinyin: string;
+}
+
+interface AnnotatedText {
+  text: string;
+  ruby: string;
+}
+
 export class SongLyric {
-  constructor(data = {}) {
+  ChnStr: string;
+  EngStr: string;
+  Pinyin: string;
+
+  constructor(data: Partial<SongLyricData> = {}) {
     this.ChnStr = data.ChnStr || '';
     this.EngStr = data.EngStr || '';
     this.Pinyin = data.Pinyin || '';

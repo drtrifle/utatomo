@@ -7,12 +7,14 @@
   </nav>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   data() {
     return {
-      isDev: import.meta.env.DEV
+      isDev: import.meta.env.DEV as boolean
     }
   }
-}
+});
 </script>

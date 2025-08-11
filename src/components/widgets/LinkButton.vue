@@ -11,28 +11,30 @@
     </router-link>
   </template>
   
-  <script>
-  export default {
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+
+export default defineComponent({
     name: 'LinkButton',
     props: {
       to: {
-        type: String,
+      type: String as PropType<string>,
         required: true
       },
       text: {
-        type: String,
+      type: String as PropType<string>,
         required: true
       },
       color: {
-        type: String,
+      type: String as PropType<string>,
         default: '#007bff' // Default blue
       },
       hoverColor: {
-        type: String,
+      type: String as PropType<string>,
         default: '#0056b3' // Darker blue
       }
     }
-  };
+});
   </script>
   
   <style scoped>

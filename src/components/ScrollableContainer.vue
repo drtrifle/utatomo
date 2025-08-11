@@ -4,15 +4,17 @@
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+
+export default defineComponent({
     props: {
         maxHeight: {
-            type: String,
+            type: String as PropType<string>,
             default: '400px', // Default maximum height if not provided
         },
     },
-};
+});
 </script>
 
 <style scoped>

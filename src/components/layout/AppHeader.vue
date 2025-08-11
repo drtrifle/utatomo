@@ -36,12 +36,14 @@
     </header>
   </template>
   
-  <script>
-  export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
     name: 'AppHeader',
     data() {
       return {
-        isMobileMenuOpen: false
+      isMobileMenuOpen: false as boolean
       };
     },
     watch: {
@@ -50,7 +52,7 @@
         this.isMobileMenuOpen = false;
       }
     }
-  };
+});
   </script>
   
   <style scoped>

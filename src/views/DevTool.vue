@@ -62,14 +62,25 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import pinyin from "pinyin";
 
-export default {
+interface LyricLine {
+  ChnStr: string;
+  EngStr: string;
+  Pinyin?: string;
+}
+
+interface LyricsData {
+  lyrics: LyricLine[];
+}
+
+export default defineComponent({
   name: 'DevTool',
   data() {
     return {
-      lyricsData: null,
+      lyricsData: null as LyricsData | null,
       jsonOutput: "",
       fileName: "baked_lyrics.json",
       isDragging: false,
@@ -77,26 +88,29 @@ export default {
     };
   },
   methods: {
-    handleFileUpload(event) {
-      const file = event.target.files[0];
+    handleFileUpload(event: Event) {
+      const target = event.target as HTMLInputElement;
+      const file = target.files?.[0];
       if (!file) return;
       this.fileName = file.name;
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onload = (e: ProgressEvent<FileReader>) => {
         try {
-          this.lyricsData = JSON.parse(e.target.result);
-          this.jsonOutput = "";
+          if (e.target?.result) {
+            this.lyricsData = JSON.parse(e.target.result as string);
+            this.jsonOutput = "";
+          }
         } catch (err) {
           alert("Error parsing JSON file.");
         }
       };
       reader.readAsText(file);
     },
-    handleFileDrop(e) {
+    handleFileDrop(e: DragEvent) {
       this.isDragging = false;
-      const file = e.dataTransfer.files[0];
+      const file = e.dataTransfer?.files[0];
       if (file && file.type === 'application/json') {
-        this.handleFileUpload({ target: { files: [file] } });
+        this.handleFileUpload({ target: { files: [file] } } as unknown as Event);
       }
     },
     bakePinyin() {
@@ -104,10 +118,10 @@ export default {
         alert("Please load a valid lyrics JSON file first.");
         return;
       }
-      const isChinese = (char) => /[\u4e00-\u9fff]/.test(char);
+      const isChinese = (char: string) => /[\u4e00-\u9fff]/.test(char);
 
-      const segmentString = (str) => {
-        const segments = [];
+      const segmentString = (str: string) => {
+        const segments: { text: string, isChinese: boolean }[] = [];
         let currentSegment = '';
         let isCurrentChinese = false;
 
@@ -157,7 +171,6 @@ export default {
           if (segment.isChinese) {
             const segmentPinyin = pinyin(segment.text, {
               style: pinyin.STYLE_TONE,
-              segment: false,
             });
 
             for (let i = 0; i < segment.text.length; i++) {
@@ -193,7 +206,7 @@ export default {
       document.body.removeChild(downloadAnchor);
     },
   },
-};
+});
 </script>
 
 <style scoped>
