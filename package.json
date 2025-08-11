@@ -8,7 +8,9 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "deploy": "gh-pages -d dist",
-    "type-check": "vue-tsc --noEmit"
+    "type-check": "vue-tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "core-js": "^3.8.3",
@@ -21,23 +23,54 @@
     "@types/pinyin": "^2.10.2",
     "@vitejs/plugin-vue": "^5.0.0",
     "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "eslint-plugin-vue": "^8.0.3",
+    "vue-eslint-parser": "^9.4.3",
     "gh-pages": "^6.3.0",
+    "jsdom": "^24.1.1",
     "pinyin": "^4.0.0-alpha.2",
     "typescript": "^5.9.2",
     "vite": "^5.0.0",
-    "vue-tsc": "^3.0.5"
+    "vue-tsc": "^3.0.5",
+    "vitest": "^2.0.4",
+    "@vitest/ui": "^2.0.4",
+    "@vue/test-utils": "^2.4.6"
   },
   "eslintConfig": {
     "root": true,
     "env": {
       "node": true
     },
+    "globals": {
+      "NodeJS": true
+    },
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser"
+    },
     "extends": [
+      "eslint:recommended",
       "plugin:vue/vue3-essential",
-      "eslint:recommended"
+      "plugin:@typescript-eslint/recommended"
     ],
-    "rules": {}
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "args": "all",
+          "argsIgnorePattern": "^_",
+          "caughtErrors": "all",
+          "caughtErrorsIgnorePattern": "^_",
+          "destructuredArrayIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "ignoreRestSiblings": true
+        }
+      ]
+    }
   },
   "browserslist": [
     "> 1%",
