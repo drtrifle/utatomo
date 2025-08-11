@@ -1,1 +1,0 @@
-import{_ as t,c as o,r as s,o as a}from"./index-BWUeLVXy.js";const r={props:{maxHeight:{type:String,default:"400px"}}},n={class:"scrollable-container"};function c(e,d,l,p,_,i){return a(),o("div",n,[s(e.$slots,"default",{},void 0)])}const u=t(r,[["render",c],["__scopeId","data-v-1d1db41d"]]);export{u as default};
