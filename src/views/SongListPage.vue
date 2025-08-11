@@ -10,10 +10,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(song, index) in songs" :key="song.id" @click="goToSongDetails(song.id)">
+                <tr v-for="(song, index) in songInfos" :key="song.id" @click="goToSongDetails(song.id)">
                     <td>{{ index + 1 }}</td>
                     <td :class="styles.songTitle">
-                        <img :src="getThumbnail(song.youtubeUrl)" alt="Thumbnail" :class="styles.thumbnail" />
+                        <img :src="song.getThumbnailUrl()" alt="Thumbnail" :class="styles.thumbnail" />
                         <div :class="styles.titleInfo">
                             <div :class="styles.title">{{ song.title }}</div>
                             <div :class="styles.artist">{{ song.artist }}</div>
@@ -28,23 +28,22 @@
 </template>
 
 <script>
-import { fetchSongs, getYouTubeThumbnail } from '../services/songService';
+import { SongInfo } from '../models/SongInfo';
+import { fetchSongInfos } from '../services/songService';
 import styles from '../styles/songList.module.css'; // Import the CSS Module
 
 export default {
     name: 'SongListPage',
     data() {
         return {
-            songs: [],
+            /** @type {import('../models/SongInfo').SongInfo[]} */
+            songInfos: [],
         };
     },
     async created() {
-        this.songs = await fetchSongs();
+        this.songInfos = await fetchSongInfos();
     },
     methods: {
-        getThumbnail(youtubeUrl) {
-            return getYouTubeThumbnail(youtubeUrl);
-        },
         goToSongDetails(songId) {
             this.$router.push(`/song/${songId}`);
         },
