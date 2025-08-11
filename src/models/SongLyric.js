@@ -1,8 +1,8 @@
 export class SongLyric {
-  constructor(chnStr = '', engStr = '', pinyin = '') {
-    this.ChnStr = chnStr;
-    this.EngStr = engStr;
-    this.Pinyin = pinyin;
+  constructor(data = {}) {
+    this.ChnStr = data.ChnStr || '';
+    this.EngStr = data.EngStr || '';
+    this.Pinyin = data.Pinyin || '';
   }
 
   getAnnotatedText() {

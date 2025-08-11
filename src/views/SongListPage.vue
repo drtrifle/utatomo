@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { fetchSongs } from '../services/songService';
+import { fetchSongInfos } from '../services/songService';
 import styles from '../styles/songList.module.css'; // Import the CSS Module
 
 export default {
@@ -39,7 +39,7 @@ export default {
         };
     },
     async created() {
-        this.songs = await fetchSongs();
+        this.songs = await fetchSongInfos();
     },
     methods: {
         goToSongDetails(songId) {

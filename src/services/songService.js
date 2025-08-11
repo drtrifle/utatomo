@@ -1,11 +1,11 @@
 import { SongLyric } from '../models/SongLyric';
 import { SongInfo } from '../models/SongInfo';
 
-export async function fetchSongs() {
+export async function fetchSongInfos() {
   try {
     const baseUrl = import.meta.env.DEV ? '' : '/utatomo';
-    console.log('Fetching songs from:', `${baseUrl}/data/songs.json`);
-    const response = await fetch(`${baseUrl}/data/songs.json`);
+    console.log('Fetching songs from:', `${baseUrl}/data/songInfos.json`);
+    const response = await fetch(`${baseUrl}/data/songInfos.json`);
     console.log('Response status:', response.status);
     if (!response.ok) {
       throw new Error(`Error fetching songs: ${response.statusText}`);
@@ -21,7 +21,7 @@ export async function fetchSongs() {
 
 export const fetchSongById = async (songId) => {
   console.log(`Fetching song with ID: ${songId}`); // Debug log
-  const songs = await fetchSongs();
+  const songs = await fetchSongInfos();
   console.log('Fetched songs:', songs); // Debug log
   const song = songs.find((s) => s.id === songId);
   console.log('Found song:', song); // Debug log
@@ -39,9 +39,7 @@ export const fetchLyricsById = async (songId) => {
     console.log(`Fetched lyrics for ID ${songId}:`, data);
 
     // Transform each line into a SongLyric object with Pinyin
-    return data.lyrics.map(
-      (line) => new SongLyric(line.ChnStr || '', line.EngStr || '', line.Pinyin || '')
-    );
+    return data.lyrics.map(line => new SongLyric(line));
   } catch (error) {
     console.error('Error fetching lyrics:', error);
     return null;
