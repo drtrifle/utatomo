@@ -23,7 +23,10 @@
     "@types/pinyin": "^2.10.2",
     "@vitejs/plugin-vue": "^5.0.0",
     "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "eslint-plugin-vue": "^8.0.3",
+    "vue-eslint-parser": "^9.4.3",
     "gh-pages": "^6.3.0",
     "pinyin": "^4.0.0-alpha.2",
     "typescript": "^5.9.2",
@@ -38,11 +41,35 @@
     "env": {
       "node": true
     },
+    "globals": {
+      "NodeJS": true
+    },
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser"
+    },
     "extends": [
+      "eslint:recommended",
       "plugin:vue/vue3-essential",
-      "eslint:recommended"
+      "plugin:@typescript-eslint/recommended"
     ],
-    "rules": {}
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "args": "all",
+          "argsIgnorePattern": "^_",
+          "caughtErrors": "all",
+          "caughtErrorsIgnorePattern": "^_",
+          "destructuredArrayIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "ignoreRestSiblings": true
+        }
+      ]
+    }
   },
   "browserslist": [
     "> 1%",
