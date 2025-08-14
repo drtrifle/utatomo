@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(song, index) in songInfos" :key="song.id" @click="goToSongDetails(song.id)">
+                <tr v-for="(song, index) in songInfos" :key="song.id" @click="goToSongDetails(song)">
                     <td>{{ index + 1 }}</td>
                     <td :class="styles.songTitle">
                         <img :src="song.getThumbnailUrl()" alt="Thumbnail" :class="styles.thumbnail" />
@@ -44,8 +44,8 @@ export default defineComponent({
         this.songInfos = await fetchSongInfos();
     },
     methods: {
-        goToSongDetails(songId: string) {
-            this.$router.push(`/song/${songId}`);
+        goToSongDetails(song: SongInfo) {
+            this.$router.push(`/song/${song.language}/${song.id}`);
         },
     },
     computed: {

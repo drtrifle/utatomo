@@ -28,10 +28,10 @@ export const fetchSongById = async (songId: string): Promise<SongInfo | undefine
   return song;
 };
 
-export const fetchLyricsById = async (songId: string): Promise<SongLyric[] | null> => {
+export const fetchLyricsById = async (songId: string, language: string): Promise<SongLyric[] | null> => {
   try {
     const baseUrl = import.meta.env.DEV ? '' : '/utatomo';
-    const response = await fetch(`${baseUrl}/data/lyrics/${songId}.json`);
+    const response = await fetch(`${baseUrl}/data/lyrics/${language}/${songId}.json`);
     if (!response.ok) {
       throw new Error(`Lyrics not found for ID: ${songId}`);
     }

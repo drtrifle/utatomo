@@ -93,10 +93,11 @@ export default defineComponent({
     async fetchData() {
       try {
         const songId = this.$route.params.id as string;
+        const language = this.$route.params.language as string;
         const fetchedSong = await fetchSongById(songId);
         if (fetchedSong) {
           this.song = fetchedSong;
-          this.lyrics = await fetchLyricsById(songId);
+          this.lyrics = await fetchLyricsById(songId, language);
         }
       } catch (error) {
         console.error('Error loading song details:', error);
