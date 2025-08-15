@@ -1,4 +1,4 @@
-import { SongLyric } from '../models/SongLyric';
+import { SongLyric, SongLyricsChinese, SongLyricsJapanese } from '../models/SongLyric';
 import { SongInfo } from '../models/SongInfo';
 
 export async function fetchSongInfos(): Promise<SongInfo[]> {
@@ -38,8 +38,13 @@ export const fetchLyricsById = async (songId: string, language: string): Promise
     const data = await response.json();
     console.log(`Fetched lyrics for ID ${songId}:`, data);
 
-    // Transform each line into a SongLyric object with Pinyin
-    return data.lyrics.map((line: any) => new SongLyric(line));
+
+    if (language === 'chinese')
+      return data.lyrics.map((line: any) => new SongLyricsChinese(line));
+    else if(language === 'japanese') 
+      return data.lyrics.map((line: any) => new SongLyricsJapanese(line)); 
+    else
+      return data.lyrics.map((line: any) => new SongLyric(line));
   } catch (error) {
     console.error('Error fetching lyrics:', error);
     return null;

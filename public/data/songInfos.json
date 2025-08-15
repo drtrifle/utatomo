@@ -134,5 +134,13 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=YG4iTGjuoKw",
     "duration": "0:00",
     "language": "chinese"
+  },
+  {
+    "id": "ADO-001",
+    "title": "うっせぇわ (Usseewa)",
+    "artist": "Ado",
+    "youtubeUrl": "https://www.youtube.com/watch?v=Qp3b-RXtz4w",
+    "duration": "0:00",
+    "language": "japanese"
   }
 ]
