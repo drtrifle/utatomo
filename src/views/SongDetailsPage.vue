@@ -12,7 +12,7 @@
           <div class="widget-wrap">
             <ToggleWidget header="English Lyrics" :options="['On', 'Off']" v-model="engLyricsIdx" />
             <ToggleWidget header="Font Size" :options="['S', 'M', 'L']" v-model="fontSizeIdx" />
-            <ToggleWidget header="Alignment" :options="['Left', 'Center', 'Right']" v-model="textAlignIdx" />
+            <ToggleWidget header="Alignment" :options="alignmentOptions" v-model="textAlignIdx" />
           </div>
         </div>
 
@@ -79,6 +79,11 @@ export default defineComponent({
       engLyricsIdx: 0,
       fontSizeIdx: 1,
       textAlignIdx: 0,
+      alignmentOptions: [
+        '<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18"><path d="M120-240v-80h720v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Zm0-200v-80h480v80H120Z"/></svg>',
+        '<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18"><path d="M240-240v-80h480v80H240Zm-120-200v-80h720v80H120Zm120-200v-80h480v80H240Zm-120-200v-80h720v80H120Z"/></svg>',
+        '<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18"><path d="M120-240v-80h720v80H120Zm240-200v-80h480v80H360Zm-240-200v-80h720v80H120Zm240-200v-80h480v80H360Z"/></svg>',
+      ]
     };
   },
   computed: {
@@ -164,15 +169,14 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .widget-wrap {
   display: flex;
   gap: 15px;
-  max-width: 600px;
-  width: 100%;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .loading {
@@ -250,12 +254,21 @@ body {
 .align-left {
   text-align: left;
 }
-
 .align-center {
   text-align: center;
 }
-
 .align-right {
   text-align: right;
+}
+
+/* This will align the chinese characters */
+.align-left .chinese-line {
+  justify-content: flex-start;
+}
+.align-center .chinese-line {
+  justify-content: center;
+}
+.align-right .chinese-line {
+  justify-content: flex-end;
 }
 </style>

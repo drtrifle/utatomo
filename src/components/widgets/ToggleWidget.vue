@@ -8,7 +8,7 @@
           :class="{ active: modelValue === index }" 
           @click="$emit('update:modelValue', index)"
         >
-          {{ option }}
+          <span v-html="option" />
         </button>
       </div>
     </div>
