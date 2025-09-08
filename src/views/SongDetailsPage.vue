@@ -12,6 +12,7 @@
           <div class="widget-wrap">
             <ToggleWidget header="English Lyrics" :options="['On', 'Off']" v-model="engLyricsIdx" />
             <ToggleWidget header="Font Size" :options="['S', 'M', 'L']" v-model="fontSizeIdx" />
+            <ToggleWidget header="Alignment" :options="alignmentOptions" v-model="textAlignIdx" />
           </div>
         </div>
 
@@ -19,7 +20,7 @@
         <ScrollableContainer :maxHeight="'calc(100vh - 300px)'">
           <h2 v-once>Lyrics</h2>
           <div v-if="lyrics">
-            <div v-for="(line, index) in lyrics" :key="index" :class="fontSizeClass">
+            <div v-for="(line, index) in lyrics" :key="index" :class="[fontSizeClass, textAlignClass]">
               <div v-if="!line.isEmpty()">
                 <div class="line-container">
                   <div class="chinese-line">
@@ -34,7 +35,6 @@
                 </div>
               </div>
               <div v-else>&nbsp;</div>
-              <br />
             </div>
           </div>
           <p v-else class="loading">Loading lyrics...</p>
@@ -78,6 +78,12 @@ export default defineComponent({
       lyrics: null as SongLyric[] | null,
       engLyricsIdx: 0,
       fontSizeIdx: 1,
+      textAlignIdx: 0,
+      alignmentOptions: [
+        '<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18"><path d="M120-240v-80h720v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Zm0-200v-80h480v80H120Z"/></svg>',
+        '<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18"><path d="M240-240v-80h480v80H240Zm-120-200v-80h720v80H120Zm120-200v-80h480v80H240Zm-120-200v-80h720v80H120Z"/></svg>',
+        '<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18"><path d="M120-240v-80h720v80H120Zm240-200v-80h480v80H360Zm-240-200v-80h720v80H120Zm240-200v-80h480v80H360Z"/></svg>',
+      ]
     };
   },
   computed: {
@@ -86,6 +92,13 @@ export default defineComponent({
         fontSmall: this.fontSizeIdx == 0,
         fontMedium: this.fontSizeIdx == 1,
         fontLarge: this.fontSizeIdx == 2,
+      };
+    },
+    textAlignClass(): Record<string, boolean> {
+      return {
+        'align-left': this.textAlignIdx === 0,
+        'align-center': this.textAlignIdx === 1,
+        'align-right': this.textAlignIdx === 2,
       };
     },
   },
@@ -156,15 +169,14 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .widget-wrap {
   display: flex;
   gap: 15px;
-  max-width: 600px;
-  width: 100%;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .loading {
@@ -185,21 +197,21 @@ body {
 
 .fontSmall {
   font-size: 0.8rem;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 .fontMedium {
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.3;
 }
 
 .fontLarge {
   font-size: 1.2rem;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 .line-container {
-  margin: 1em 0;
+  margin: 0.5em 0;
 }
 
 .chinese-line {
@@ -237,5 +249,26 @@ body {
 
 .fontLarge .text {
   font-size: 1.4em;
+}
+
+.align-left {
+  text-align: left;
+}
+.align-center {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+
+/* This will align the chinese characters */
+.align-left .chinese-line {
+  justify-content: flex-start;
+}
+.align-center .chinese-line {
+  justify-content: center;
+}
+.align-right .chinese-line {
+  justify-content: flex-end;
 }
 </style>

@@ -8,7 +8,7 @@
           :class="{ active: modelValue === index }" 
           @click="$emit('update:modelValue', index)"
         >
-          {{ option }}
+          <span v-html="option" />
         </button>
       </div>
     </div>
@@ -37,29 +37,34 @@ export default defineComponent({
   
   <style scoped>
   .widget {
-    width: 200px;
-    padding: 8px;
+    padding: 4px 8px;
     background-color: #f0f0f0;
     border: 1px solid #ddd;
     border-radius: 8px;
     text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .widget-header {
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: bold;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+  }
+
+  .widget-body {
+    display: flex;
+    gap: 4px;
   }
   
   .widget-body button {
-    width: 25%;
-    padding: 6px;
-    margin: 0 4px;
+    padding: 4px 8px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     background-color: #ddd;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   
   .widget-body button.active {
