@@ -5,6 +5,7 @@ interface SongInfoData {
   youtubeUrl: string;
   duration: string;
   language: string;
+  tags: string[];
 }
 
 export class SongInfo {
@@ -14,6 +15,7 @@ export class SongInfo {
   youtubeUrl: string;
   duration: string;
   language: string;
+  tags: string[];
 
   constructor(data: Partial<SongInfoData> = {}) {
     this.id = data.id || '';
@@ -22,6 +24,7 @@ export class SongInfo {
     this.youtubeUrl = data.youtubeUrl || '';
     this.duration = data.duration || '';
     this.language = data.language || '';
+    this.tags = data.tags || [];
   }
 
   getThumbnailUrl() {
