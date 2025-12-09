@@ -2,7 +2,7 @@
     <div>
         <h1>Song List</h1>
         <div :class="styles.controls">
-            <input type="text" v-model="searchTerm" placeholder="Search by song, artist, language, or tag" :class="styles.searchInput" />
+            <input type="text" v-model="searchTerm" placeholder="Search by song, artist, language or tag" :class="styles.searchInput" />
             <div :class="styles.sortContainer">
                 <div class="sort-dropdown">
                     <button @click="toggleSortDropdown" :class="styles.sortButton">Sort: {{ sortByText }}</button>
