@@ -80,6 +80,14 @@
     "language": "chinese"
   },
   {
+    "id": "MARK-001",
+    "title": "把钱还给我吧",
+    "artist": "李國煌 (Mark Lee)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=4QG2hDzj9QE",
+    "duration": "0:00",
+    "language": "chinese"
+  },
+  {
     "id": "MAYDAY-001",
     "title": "温柔 (Tenderness)",
     "artist": "五月天 (Mayday)",
@@ -92,6 +100,14 @@
     "title": "嗜愛動物 (Loveholic)",
     "artist": "麋先生 (Mixer)",
     "youtubeUrl": "https://www.youtube.com/watch?v=4JNb4fiT1VA",
+    "duration": "0:00",
+    "language": "chinese"
+  },
+  {
+    "id": "PENNY-001",
+    "title": "你要的愛 (The Love You Want)",
+    "artist": "戴佩妮 (Penny Tai)",
+    "youtubeUrl": "https://www.youtube.com/watch?v=oV5wT-ps9DI",
     "duration": "0:00",
     "language": "chinese"
   },
