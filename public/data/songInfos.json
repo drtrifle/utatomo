@@ -5,7 +5,8 @@
     "artist": "張惠妹 (A-Mei)",
     "youtubeUrl": "https://www.youtube.com/watch?v=mLk61pfiHQ0",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": ["ballad", "90s"]
   },
   {
     "id": "ANDY-001",
@@ -13,7 +14,8 @@
     "artist": "聰明版 (Andy Lau)",
     "youtubeUrl": "https://www.youtube.com/watch?v=tuC_Ng07iCw",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "ASI-001",
@@ -21,7 +23,8 @@
     "artist": "阿肆 (A Si)",
     "youtubeUrl": "https://www.youtube.com/watch?v=_FVvA1lUkQ8",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "AYUE-001",
@@ -29,7 +32,8 @@
     "artist": "張震嶽 (A-Yue)",
     "youtubeUrl": "https://www.youtube.com/watch?v=9ei1PUmDz98",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "AYUE-002",
@@ -37,7 +41,8 @@
     "artist": "張震嶽 (A-Yue)",
     "youtubeUrl": "https://www.youtube.com/watch?v=_VCU94B_Oig",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "EASON-001",
@@ -45,7 +50,8 @@
     "artist": "陳奕迅 (Eason Chan)",
     "youtubeUrl": "https://www.youtube.com/watch?v=JM9rx_hN1Ko",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "GEM-001",
@@ -53,7 +59,8 @@
     "artist": "鄧紫棋 (G.E.M.)",
     "youtubeUrl": "https://www.youtube.com/watch?v=GHXr4bBxHCo",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "JAY-001",
@@ -61,7 +68,8 @@
     "artist": "周杰倫 (Jay Chou)",
     "youtubeUrl": "https://www.youtube.com/watch?v=bu7nU9Mhpyo",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "JIN-001",
@@ -69,7 +77,8 @@
     "artist": "金志文 (Jin Zhiwen)",
     "youtubeUrl": "https://www.youtube.com/watch?v=TSeruwcAqgM",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "MAO-001",
@@ -77,7 +86,8 @@
     "artist": "毛不易 (Mao Buyi)",
     "youtubeUrl": "https://www.youtube.com/watch?v=nBcYrqsv5tc",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "MARK-001",
@@ -85,7 +95,8 @@
     "artist": "李國煌 (Mark Lee)",
     "youtubeUrl": "https://www.youtube.com/watch?v=4QG2hDzj9QE",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "MAYDAY-001",
@@ -93,7 +104,8 @@
     "artist": "五月天 (Mayday)",
     "youtubeUrl": "https://www.youtube.com/watch?v=nWb_X3ZJQjw",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "MIXER-001",
@@ -101,7 +113,8 @@
     "artist": "麋先生 (Mixer)",
     "youtubeUrl": "https://www.youtube.com/watch?v=4JNb4fiT1VA",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "PENNY-001",
@@ -109,7 +122,8 @@
     "artist": "戴佩妮 (Penny Tai)",
     "youtubeUrl": "https://www.youtube.com/watch?v=oV5wT-ps9DI",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "POWER-001",
@@ -117,7 +131,8 @@
     "artist": "動力火車 (Power Station)",
     "youtubeUrl": "https://www.youtube.com/watch?v=Z_GwKSC1kF8",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "PUSHU-001",
@@ -125,7 +140,8 @@
     "artist": "朴树 (Pu Shu)",
     "youtubeUrl": "https://www.youtube.com/watch?v=ecTSlaNM0Z0",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "RONGHAO-001",
@@ -133,7 +149,8 @@
     "artist": "李榮浩 (Ronghao Li)",
     "youtubeUrl": "https://www.youtube.com/watch?v=Dnj5Tcpev0Q",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "WAKIN-001",
@@ -141,7 +158,8 @@
     "artist": "周华健 (Wakin Chau)",
     "youtubeUrl": "https://www.youtube.com/watch?v=6lbPgfKK7m4",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "ZHANG-001",
@@ -149,7 +167,8 @@
     "artist": "大張偉 (Wowkie Zhang)",
     "youtubeUrl": "https://www.youtube.com/watch?v=YG4iTGjuoKw",
     "duration": "0:00",
-    "language": "chinese"
+    "language": "chinese",
+    "tags": []
   },
   {
     "id": "ADO-001",
@@ -157,6 +176,16 @@
     "artist": "Ado",
     "youtubeUrl": "https://www.youtube.com/watch?v=Qp3b-RXtz4w",
     "duration": "0:00",
-    "language": "japanese"
+    "language": "japanese",
+    "tags": []
+  },
+  {
+    "id": "GREEEEN-001",
+    "title": "キセキ (Kiseki)",
+    "artist": "GReeeeN",
+    "youtubeUrl": "https://www.youtube.com/watch?v=tO5KPGgwb-I",
+    "duration": "0:00",
+    "language": "japanese",
+    "tags": []
   }
 ]
