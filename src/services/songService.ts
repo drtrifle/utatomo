@@ -28,23 +28,28 @@ export const fetchSongById = async (songId: string): Promise<SongInfo | undefine
   return song;
 };
 
-export const fetchLyricsById = async (songId: string, language: string): Promise<SongLyric[] | null> => {
+export const fetchLyricsById = async (songId: string, language: string): Promise<{ lyrics: SongLyric[], vocab: string[] } | null> => {
   try {
     const baseUrl = import.meta.env.DEV ? '' : '/utatomo';
-    const response = await fetch(`${baseUrl}/data/lyrics/${language}/${songId}.json`);
+    const response = await fetch(`${baseUrl}/data/lyrics/${language.toLowerCase()}/${songId}.json`);
     if (!response.ok) {
       throw new Error(`Lyrics not found for ID: ${songId}`);
     }
     const data = await response.json();
     console.log(`Fetched lyrics for ID ${songId}:`, data);
 
+    let lyrics: SongLyric[];
+    if (language === 'chinese') {
+      lyrics = data.lyrics.map((line: any) => new SongLyricsChinese(line));
+    } else if(language === 'japanese') {
+      lyrics = data.lyrics.map((line: any) => new SongLyricsJapanese(line));
+    } else {
+      lyrics = data.lyrics.map((line: any) => new SongLyric(line));
+    }
 
-    if (language === 'chinese')
-      return data.lyrics.map((line: any) => new SongLyricsChinese(line));
-    else if(language === 'japanese') 
-      return data.lyrics.map((line: any) => new SongLyricsJapanese(line)); 
-    else
-      return data.lyrics.map((line: any) => new SongLyric(line));
+    const vocab = data.ListVocab || [];
+
+    return { lyrics, vocab };
   } catch (error) {
     console.error('Error fetching lyrics:', error);
     return null;

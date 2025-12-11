@@ -3,12 +3,11 @@
 > vite
 
 [33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
-Port 5173 is in use, trying another one...
+Re-optimizing dependencies because lockfile has changed
 
-  VITE v5.4.18  ready in 367 ms
+  VITE v5.4.18  ready in 409 ms
 
-  ➜  Local:   http://localhost:5174/
+  ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
 2:59:55 PM [vite] hmr update /src/views/SongDetailsPage.vue
 3:01:19 PM [vite] hmr update /src/views/SongListPage.vue, /src/views/SongDetailsPage.vue
-&index=0&scoped=893b00d6&lang.css

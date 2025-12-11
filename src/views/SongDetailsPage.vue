@@ -16,29 +16,35 @@
           </div>
         </div>
 
-        <!-- Scrollable Lyrics -->
-        <ScrollableContainer :maxHeight="'calc(100vh - 300px)'">
-          <h2 v-once>Lyrics</h2>
-          <div v-if="lyrics">
-            <div v-for="(line, index) in lyrics" :key="index" :class="[fontSizeClass, textAlignClass]">
-              <div v-if="!line.isEmpty()">
-                <div class="line-container">
-                  <div class="chinese-line">
-                    <template v-for="(segment, idx) in line.getAnnotatedText()" :key="idx">
-                      <div class="char-container">
-                        <span class="ruby">{{ segment.ruby }}</span>
-                        <span class="text">{{ segment.text }}</span>
+        <!-- Tabs for Lyrics and Vocab -->
+        <TabContainer :tabs="tabs" v-if="lyrics">
+          <template #tab-0>
+            <ScrollableContainer :maxHeight="'calc(100vh - 350px)'">
+              <div v-if="lyrics">
+                <div v-for="(line, index) in lyrics" :key="index" :class="[fontSizeClass, textAlignClass]">
+                  <div v-if="!line.isEmpty()">
+                    <div class="line-container">
+                      <div class="chinese-line">
+                        <template v-for="(segment, idx) in line.getAnnotatedText()" :key="idx">
+                          <div class="char-container">
+                            <span class="ruby">{{ segment.ruby }}</span>
+                            <span class="text">{{ segment.text }}</span>
+                          </div>
+                        </template>
                       </div>
-                    </template>
+                      <small v-if="engLyricsIdx == 0">{{ line.EngStr }}</small>
+                    </div>
                   </div>
-                  <small v-if="engLyricsIdx == 0">{{ line.EngStr }}</small>
+                  <div v-else>&nbsp;</div>
                 </div>
               </div>
-              <div v-else>&nbsp;</div>
-            </div>
-          </div>
-          <p v-else class="loading">Loading lyrics...</p>
-        </ScrollableContainer>
+            </ScrollableContainer>
+          </template>
+          <template #tab-1>
+            <VocabList :vocab="vocab" />
+          </template>
+        </TabContainer>
+        <p v-else class="loading">Loading lyrics...</p>
       </div>
     </div>
     <div v-else>
@@ -64,6 +70,12 @@ const ScrollableContainer = defineAsyncComponent(() =>
 const ToggleWidget = defineAsyncComponent(() =>
   import('../components/widgets/ToggleWidget.vue')
 );
+const TabContainer = defineAsyncComponent(() =>
+  import('../components/TabContainer.vue')
+);
+const VocabList = defineAsyncComponent(() =>
+  import('../components/VocabList.vue')
+);
 
 export default defineComponent({
   components: {
@@ -71,11 +83,14 @@ export default defineComponent({
     ScrollableContainer,
     ToggleWidget,
     LoadingSpinner,
+    TabContainer,
+    VocabList,
   },
   data() {
     return {
       song: null as SongInfo | null,
       lyrics: null as SongLyric[] | null,
+      vocab: null as string[] | null,
       engLyricsIdx: 0,
       fontSizeIdx: 1,
       textAlignIdx: 0,
@@ -87,6 +102,13 @@ export default defineComponent({
     };
   },
   computed: {
+    tabs() {
+      const tabList = ['Lyrics'];
+      if (this.vocab && this.vocab.length > 0) {
+        tabList.push('Vocabulary');
+      }
+      return tabList;
+    },
     fontSizeClass(): Record<string, boolean> {
       return {
         fontSmall: this.fontSizeIdx == 0,
@@ -107,13 +129,29 @@ export default defineComponent({
       try {
         const songId = this.$route.params.id as string;
         const language = this.$route.params.language as string;
+        console.log(`Fetching data for songId: ${songId}, language: ${language}`);
+
         const fetchedSong = await fetchSongById(songId);
         if (fetchedSong) {
           this.song = fetchedSong;
-          this.lyrics = await fetchLyricsById(songId, language);
+          console.log('Successfully fetched song info:', this.song);
+
+          const lyricsAndVocab = await fetchLyricsById(songId, language);
+          console.log('Fetched lyrics and vocab data:', lyricsAndVocab);
+
+          if (lyricsAndVocab) {
+            this.lyrics = lyricsAndVocab.lyrics;
+            this.vocab = lyricsAndVocab.vocab;
+            console.log('Lyrics data set:', this.lyrics);
+            console.log('Vocab data set:', this.vocab);
+          } else {
+            console.log('lyricsAndVocab is null or undefined');
+          }
+        } else {
+            console.log('fetchedSong is null or undefined');
         }
       } catch (error) {
-        console.error('Error loading song details:', error);
+        console.error('Error in fetchData:', error);
       }
     },
   },
