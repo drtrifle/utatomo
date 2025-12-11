@@ -1,0 +1,1 @@
+import{d as o,_ as t,c as a,r as s,o as n}from"./index-DQ1PZdd7.js";const r=o({props:{maxHeight:{type:String,default:"400px"}}}),c={class:"scrollable-container"};function d(e,l,p,i,_,f){return n(),a("div",c,[s(e.$slots,"default",{},void 0)])}const u=t(r,[["render",d],["__scopeId","data-v-6add7472"]]);export{u as default};
