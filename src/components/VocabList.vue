@@ -29,9 +29,6 @@ export default defineComponent({
       required: true,
     },
   },
-  mounted() {
-    console.log('Vocab data in VocabList:', this.vocab);
-  },
   methods: {
     jishoLink(word: string) {
       const query = word.split('-')[0];
@@ -42,10 +39,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.vocab-list {
-  min-height: 200px; /* Ensure the container is visible */
-  background-color: #f0f0f0; /* Add a background color for debugging */
-}
 .vocab-list ul {
   list-style: none;
   padding: 0;

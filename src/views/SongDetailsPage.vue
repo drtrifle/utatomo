@@ -41,7 +41,7 @@
             </ScrollableContainer>
           </template>
           <template #tab-1>
-            <VocabList :vocab="vocab" />
+            <VocabList v-if="vocab" :vocab="vocab" />
           </template>
         </TabContainer>
         <p v-else class="loading">Loading lyrics...</p>
@@ -129,26 +129,17 @@ export default defineComponent({
       try {
         const songId = this.$route.params.id as string;
         const language = this.$route.params.language as string;
-        console.log(`Fetching data for songId: ${songId}, language: ${language}`);
 
         const fetchedSong = await fetchSongById(songId);
         if (fetchedSong) {
           this.song = fetchedSong;
-          console.log('Successfully fetched song info:', this.song);
 
           const lyricsAndVocab = await fetchLyricsById(songId, language);
-          console.log('Fetched lyrics and vocab data:', lyricsAndVocab);
 
           if (lyricsAndVocab) {
             this.lyrics = lyricsAndVocab.lyrics;
             this.vocab = lyricsAndVocab.vocab;
-            console.log('Lyrics data set:', this.lyrics);
-            console.log('Vocab data set:', this.vocab);
-          } else {
-            console.log('lyricsAndVocab is null or undefined');
           }
-        } else {
-            console.log('fetchedSong is null or undefined');
         }
       } catch (error) {
         console.error('Error in fetchData:', error);

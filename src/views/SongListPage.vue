@@ -84,7 +84,7 @@ export default defineComponent({
     },
     methods: {
         goToSongDetails(song: SongInfo) {
-            this.$router.push(`/songs/${song.language}/${song.id}`);
+            this.$router.push(`/song/${song.language}/${song.id}`);
         },
         toggleSortDropdown() {
             this.isSortDropdownOpen = !this.isSortDropdownOpen;
