@@ -8,7 +8,7 @@ const isDev = import.meta.env.DEV;
 const baseRoutes = [
   { path: '/', component: HomePage }, // Default route
   { path: '/songs', component: SongListPage },
-  { path: '/song/:language/:id', component: SongDetailsPage },
+  { path: '/songs/:language/:id', component: SongDetailsPage },
   {
     path: '/about',
     name: 'about',
