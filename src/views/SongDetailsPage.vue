@@ -7,19 +7,18 @@
         <!-- Sticky Video -->
         <StickyVideo :youtubeUrl="song.youtubeUrl" />
 
-        <!-- Widget Container -->
-        <div class="widget-container">
-          <div class="widget-wrap">
-            <ToggleWidget header="English Lyrics" :options="['On', 'Off']" v-model="engLyricsIdx" />
-            <ToggleWidget header="Font Size" :options="['S', 'M', 'L']" v-model="fontSizeIdx" />
-            <ToggleWidget header="Alignment" :options="alignmentOptions" v-model="textAlignIdx" />
-          </div>
-        </div>
-
         <!-- Tabs for Lyrics and Vocab -->
         <TabContainer :tabs="tabs" v-if="lyrics">
           <template #tab-0>
-            <ScrollableContainer :maxHeight="'calc(100vh - 350px)'">
+            <!-- Widget Container -->
+            <div class="widget-container">
+              <div class="widget-wrap">
+                <ToggleWidget header="English Lyrics" :options="['On', 'Off']" v-model="engLyricsIdx" />
+                <ToggleWidget header="Font Size" :options="['S', 'M', 'L']" v-model="fontSizeIdx" />
+                <ToggleWidget header="Alignment" :options="alignmentOptions" v-model="textAlignIdx" />
+              </div>
+            </div>
+            <ScrollableContainer :maxHeight="'calc(100vh - 450px)'">
               <div v-if="lyrics">
                 <div v-for="(line, index) in lyrics" :key="index" :class="[fontSizeClass, textAlignClass]">
                   <div v-if="!line.isEmpty()">
@@ -41,7 +40,7 @@
             </ScrollableContainer>
           </template>
           <template #tab-1>
-            <VocabList v-if="vocab" :vocab="vocab" />
+            <VocabList v-if="vocab" :vocab="vocab" :language="language" />
           </template>
         </TabContainer>
         <p v-else class="loading">Loading lyrics...</p>
@@ -91,6 +90,7 @@ export default defineComponent({
       song: null as SongInfo | null,
       lyrics: null as SongLyric[] | null,
       vocab: null as string[] | null,
+      language: '' as string,
       engLyricsIdx: 0,
       fontSizeIdx: 1,
       textAlignIdx: 0,
@@ -128,13 +128,13 @@ export default defineComponent({
     async fetchData() {
       try {
         const songId = this.$route.params.id as string;
-        const language = this.$route.params.language as string;
+        this.language = this.$route.params.language as string;
 
         const fetchedSong = await fetchSongById(songId);
         if (fetchedSong) {
           this.song = fetchedSong;
 
-          const lyricsAndVocab = await fetchLyricsById(songId, language);
+          const lyricsAndVocab = await fetchLyricsById(songId, this.language);
 
           if (lyricsAndVocab) {
             this.lyrics = lyricsAndVocab.lyrics;
@@ -198,7 +198,7 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 0px;
   margin-bottom: 20px;
 }
 
@@ -206,6 +206,7 @@ export default defineComponent({
   display: flex;
   gap: 15px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .loading {
