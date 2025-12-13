@@ -1,5 +1,7 @@
 # utatomo
 
+![CI/CD](https://github.com/drtrifle/utatomo/actions/workflows/ci.yml/badge.svg)
+
 ## Project setup
 ```
 npm install
