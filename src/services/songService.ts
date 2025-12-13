@@ -1,9 +1,10 @@
 import { SongLyric, SongLyricsChinese, SongLyricsJapanese } from '../models/SongLyric';
 import { SongInfo } from '../models/SongInfo';
 
+const baseUrl = import.meta.env.DEV ? '' : '/utatomo';
+
 export async function fetchSongInfos(): Promise<SongInfo[]> {
   try {
-    const baseUrl = import.meta.env.DEV ? '' : '/utatomo';
     const response = await fetch(`${baseUrl}/data/songInfos.json`);
     if (!response.ok) {
       throw new Error(`Error fetching songs: ${response.statusText}`);
@@ -24,7 +25,6 @@ export const fetchSongById = async (songId: string): Promise<SongInfo | undefine
 
 export const fetchLyricsById = async (songId: string, language: string): Promise<{ lyrics: SongLyric[], vocab: string[] } | null> => {
   try {
-    const baseUrl = import.meta.env.DEV ? '' : '/utatomo';
     const response = await fetch(`${baseUrl}/data/lyrics/${language.toLowerCase()}/${songId}.json`);
     if (!response.ok) {
       throw new Error(`Lyrics not found for ID: ${songId}`);
