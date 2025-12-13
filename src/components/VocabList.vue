@@ -3,7 +3,7 @@
     <ScrollableContainer :maxHeight="'calc(100vh - 350px)'">
       <ul>
         <li v-for="(vocab, index) in vocab" :key="index">
-          <a :href="jishoLink(vocab)" target="_blank" rel="noopener noreferrer">
+          <a :href="dictionaryLink(vocab)" target="_blank" rel="noopener noreferrer">
             {{ vocab.split('-')[0] }}
           </a>
         </li>
@@ -28,10 +28,17 @@ export default defineComponent({
       type: Array as () => string[],
       required: true,
     },
+    language: {
+      type: String,
+      required: true,
+    },
   },
   methods: {
-    jishoLink(word: string) {
+    dictionaryLink(word: string) {
       const query = word.split('-')[0];
+      if (this.language === 'chinese') {
+        return `https://www.mdbg.net/chinese/dictionary?page=worddict&wdrst=0&wdqb=${query}`;
+      }
       return `https://jisho.org/search/${query}`;
     },
   },
