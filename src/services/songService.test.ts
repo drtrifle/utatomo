@@ -29,10 +29,21 @@ describe('songService', () => {
   };
 
   beforeEach(() => {
-    vi.mocked(SongInfo).mockImplementation(data => ({ ...data }));
-    vi.mocked(SongLyric).mockImplementation(data => ({ ...data }));
-    vi.mocked(SongLyricsChinese).mockImplementation(data => ({ ...data }));
-    vi.mocked(SongLyricsJapanese).mockImplementation(data => ({ ...data }));
+    // Correctly mock the constructors to return objects with the required methods
+    vi.mocked(SongInfo).mockImplementation(data => ({
+      ...data,
+      getThumbnailUrl: vi.fn(() => 'http://example.com/thumb.jpg'),
+    }) as SongInfo);
+
+    const lyricMock = (data: any) => ({
+        ...data,
+        getAnnotatedText: vi.fn(() => []),
+        isEmpty: vi.fn(() => false),
+    });
+
+    vi.mocked(SongLyric).mockImplementation(lyricMock as any);
+    vi.mocked(SongLyricsChinese).mockImplementation(lyricMock as any);
+    vi.mocked(SongLyricsJapanese).mockImplementation(lyricMock as any);
   });
 
   afterEach(() => {
