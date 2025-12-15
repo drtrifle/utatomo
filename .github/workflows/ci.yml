@@ -7,15 +7,17 @@ on:
     branches: [ main ]
 
 jobs:
-  # 1. CI JOB: Runs on all push/PR events to main
+  # 1. 🧪 CI JOB: Build, Test, and Upload Artifact
   build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        # ✅ ACTION UPDATE: actions/checkout is now at v4
+        uses: actions/checkout@v4 
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        # actions/setup-node is already at v4, but v3 is fine too.
+        uses: actions/setup-node@v3 
         with:
           node-version: '20'
           cache: 'npm'
@@ -23,44 +25,46 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run linter & type-check & tests
-        # Combine related steps or keep them separate, but this is the CI block
+      - name: Run CI Checks
         run: |
           npm run lint
           npm run type-check
           npm test
 
       - name: Build project
-        # Keep the build step here so artifacts are generated
         run: npm run build
       
-      # ⚠️ IMPORTANT: Upload the build output as an artifact
+      # ⬆️ ARTIFACT UPLOAD: Using the new v4 version
       - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: website-dist
-          path: ./dist # Adjust to your build output folder
+          path: ./dist 
 
-  # 2. CD JOB: Runs ONLY after 'build-and-test' is successful
+  # 2. 🚀 CD JOB: Download Artifact and Deploy
   deploy:
-    # This job ONLY runs if 'build-and-test' completed successfully
+    # Requires the CI job to succeed first
     needs: build-and-test 
     
-    # This job ONLY runs on pushes to the main branch (not on PRs)
+    # Only runs when pushing to the main branch
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     
     steps:
-      # Download the build artifact created in the previous job
+      # ⬇️ ARTIFACT DOWNLOAD: Using the new v4 version
       - name: Download build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: website-dist
-          path: ./dist
+          # In v4, you no longer specify the path in the download, 
+          # it downloads to a folder matching the artifact name by default, 
+          # but setting `path: ./dist` is the easiest way to replicate v3 behavior.
+          path: ./dist 
 
-      # Deploy the downloaded artifact
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        # ✅ DEPLOY ACTION UPDATE: Updated to v4
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist # Use the path where the artifact was downloaded
+          # The path must be relative to the runner's working directory.
+          publish_dir: ./dist
