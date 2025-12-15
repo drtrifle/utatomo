@@ -42,9 +42,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useTheme } from 'vuetify';
 
 export default defineComponent({
   name: 'AppHeader',
+  setup() {
+    const theme = useTheme();
+    return { theme };
+  },
   data() {
     return {
       drawer: false as boolean
@@ -58,7 +63,7 @@ export default defineComponent({
   methods: {
     toggleTheme() {
       const newTheme = this.$vuetify.theme.global.current.dark ? 'light' : 'dark';
-      this.$vuetify.theme.global.name = newTheme;
+      this.theme.change(newTheme);
       localStorage.setItem('theme', newTheme);
     }
   },
@@ -70,7 +75,7 @@ export default defineComponent({
   mounted() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
-      this.$vuetify.theme.global.name = savedTheme;
+      this.theme.change(savedTheme);
     }
   }
 });
