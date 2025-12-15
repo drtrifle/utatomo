@@ -7,9 +7,9 @@ on:
     branches: [ main ]
 
 jobs:
+  # 1. CI JOB: Runs on all push/PR events to main
   build-and-test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,21 +23,44 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run linter
-        run: npm run lint
-
-      - name: Run type-check
-        run: npm run type-check
-
-      - name: Run tests
-        run: npm test
+      - name: Run linter & type-check & tests
+        # Combine related steps or keep them separate, but this is the CI block
+        run: |
+          npm run lint
+          npm run type-check
+          npm test
 
       - name: Build project
+        # Keep the build step here so artifacts are generated
         run: npm run build
+      
+      # ⚠️ IMPORTANT: Upload the build output as an artifact
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: website-dist
+          path: ./dist # Adjust to your build output folder
 
+  # 2. CD JOB: Runs ONLY after 'build-and-test' is successful
+  deploy:
+    # This job ONLY runs if 'build-and-test' completed successfully
+    needs: build-and-test 
+    
+    # This job ONLY runs on pushes to the main branch (not on PRs)
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Download the build artifact created in the previous job
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: website-dist
+          path: ./dist
+
+      # Deploy the downloaded artifact
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./dist # Use the path where the artifact was downloaded
