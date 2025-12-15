@@ -51,9 +51,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read     # Allow actions/checkout to read code
-      pages: write       # Required to write to the gh-pages branch
-      id-token: write    # Required by OIDC for the deployment process (recommended for modern Pages deployment)
+      contents: write
     
     steps:
       # ⬇️ ARTIFACT DOWNLOAD: Using the new v4 version
@@ -71,5 +69,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # The path must be relative to the runner's working directory.
           publish_dir: ./dist
