@@ -10,28 +10,26 @@ const router = createRouter({
 });
 
 describe('LinkButton.vue', () => {
-  it('renders correctly with props', () => {
+  it('renders correctly with props', async () => {
     const wrapper = mount(LinkButton, {
       props: {
         to: '/test',
         text: 'Test Button',
-        color: '#ff0000',
-        hoverColor: '#cc0000',
+        color: 'primary',
       },
       global: {
         plugins: [router],
       },
     });
 
+    await router.isReady();
+
     // Check if the text is rendered
     expect(wrapper.text()).toBe('Test Button');
 
     // Check if the link is correct
-    expect(wrapper.find('a').attributes('href')).toBe('/test');
-
-    // Check if the style is applied
-    const style = wrapper.attributes('style');
-    expect(style).toContain('background-color: rgb(255, 0, 0)');
-    expect(style).toContain('--hover-color: #cc0000');
+    const btn = wrapper.findComponent({ name: 'VBtn' });
+    expect(btn.props('to')).toBe('/test');
+    expect(btn.props('color')).toBe('primary');
   });
 });

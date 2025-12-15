@@ -1,243 +1,135 @@
 <template>
-  <div class="song-details-page">
-    <button @click="$router.push('/songs')" class="back-button">← Back to Songs</button>
+  <v-container>
+    <v-btn to="/songs" prepend-icon="mdi-arrow-left" class="mb-4">Back to Songs</v-btn>
 
     <div v-if="song" class="song-details-container">
-      <div class="container-padding">
-        <!-- Sticky Video -->
-        <StickyVideo :youtubeUrl="song.youtubeUrl" />
+      <v-card>
+        <v-card-text>
+          <StickyVideo :youtubeUrl="song.youtubeUrl" />
 
-        <!-- Tabs for Lyrics and Vocab -->
-        <TabContainer :tabs="tabs" v-if="lyrics">
-          <template #tab-0>
-            <!-- Widget Container -->
-            <div class="widget-container">
-              <div class="widget-wrap">
-                <ToggleWidget header="English Lyrics" :options="['On', 'Off']" v-model="engLyricsIdx" />
-                <ToggleWidget header="Font Size" :options="['S', 'M', 'L']" v-model="fontSizeIdx" />
-                <ToggleWidget header="Alignment" :options="alignmentOptions" v-model="textAlignIdx" />
-              </div>
-            </div>
-            <ScrollableContainer :maxHeight="'calc(100vh - 450px)'">
-              <div v-if="lyrics">
-                <div v-for="(line, index) in lyrics" :key="index" :class="[fontSizeClass, textAlignClass]">
-                  <div v-if="!line.isEmpty()">
-                    <div class="line-container">
-                      <div class="chinese-line">
-                        <template v-for="(segment, idx) in line.getAnnotatedText()" :key="idx">
-                          <div class="char-container">
-                            <span class="ruby">{{ segment.ruby }}</span>
-                            <span class="text">{{ segment.text }}</span>
-                          </div>
-                        </template>
+          <TabContainer :tabs="tabs" v-if="lyrics">
+            <template #tab-0>
+              <v-row class="widget-container my-4" justify="center">
+                <v-col cols="auto">
+                  <ToggleWidget header="English Lyrics" :options="['On', 'Off']" v-model="engLyricsIdx" />
+                </v-col>
+                <v-col cols="auto">
+                  <ToggleWidget header="Font Size" :options="['S', 'M', 'L']" v-model="fontSizeIdx" />
+                </v-col>
+                <v-col cols="auto">
+                  <ToggleWidget header="Alignment" :options="alignmentOptions" v-model="textAlignIdx" />
+                </v-col>
+              </v-row>
+              <div
+                class="overflow-y-auto pa-4 border rounded"
+                style="max-height: calc(100vh - 450px);"
+              >
+                <div v-if="lyrics">
+                  <div v-for="(line, index) in lyrics" :key="index" :class="[fontSizeClass, textAlignClass]">
+                    <div v-if="!line.isEmpty()">
+                      <div class="line-container">
+                        <div class="chinese-line">
+                          <template v-for="(segment, idx) in line.getAnnotatedText()" :key="idx">
+                            <div class="char-container">
+                              <span class="ruby">{{ segment.ruby }}</span>
+                              <span class="text">{{ segment.text }}</span>
+                            </div>
+                          </template>
+                        </div>
+                        <small v-if="engLyricsIdx == 0">{{ line.EngStr }}</small>
                       </div>
-                      <small v-if="engLyricsIdx == 0">{{ line.EngStr }}</small>
                     </div>
+                    <div v-else>&nbsp;</div>
                   </div>
-                  <div v-else>&nbsp;</div>
                 </div>
               </div>
-            </ScrollableContainer>
-          </template>
-          <template #tab-1>
-            <VocabList v-if="vocab" :vocab="vocab" :language="language" />
-          </template>
-        </TabContainer>
-        <p v-else class="loading">Loading lyrics...</p>
-      </div>
+            </template>
+            <template #tab-1>
+              <VocabList v-if="vocab" :vocab="vocab" :language="language" />
+            </template>
+          </TabContainer>
+          <LoadingSpinner v-else message="Loading lyrics..." />
+        </v-card-text>
+      </v-card>
     </div>
     <div v-else>
-      <!-- LoadingSpinner -->
-      <LoadingSpinner message="Loading song details..."/>
+      <LoadingSpinner message="Loading song details..." />
     </div>
-  </div>
+  </v-container>
 </template>
 
-<script lang="ts">
-import { defineComponent, defineAsyncComponent } from 'vue';
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 import { fetchSongById, fetchLyricsById } from '../services/songService';
 import { SongInfo } from '../models/SongInfo';
 import { SongLyric } from '../models/SongLyric';
 
 import LoadingSpinner from '@/components/widgets/LoadingSpinner.vue';
-const StickyVideo = defineAsyncComponent(() =>
-  import('../components/StickyVideo.vue')
-);
-const ScrollableContainer = defineAsyncComponent(() =>
-  import('../components/ScrollableContainer.vue')
-);
-const ToggleWidget = defineAsyncComponent(() =>
-  import('../components/widgets/ToggleWidget.vue')
-);
-const TabContainer = defineAsyncComponent(() =>
-  import('../components/TabContainer.vue')
-);
-const VocabList = defineAsyncComponent(() =>
-  import('../components/VocabList.vue')
-);
+import StickyVideo from '../components/StickyVideo.vue';
+import ToggleWidget from '../components/widgets/ToggleWidget.vue';
+import TabContainer from '../components/TabContainer.vue';
+import VocabList from '../components/VocabList.vue';
 
-export default defineComponent({
-  components: {
-    StickyVideo,
-    ScrollableContainer,
-    ToggleWidget,
-    LoadingSpinner,
-    TabContainer,
-    VocabList,
-  },
-  data() {
-    return {
-      song: null as SongInfo | null,
-      lyrics: null as SongLyric[] | null,
-      vocab: null as string[] | null,
-      language: '' as string,
-      engLyricsIdx: 0,
-      fontSizeIdx: 1,
-      textAlignIdx: 0,
-      alignmentOptions: [
-        '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="M120-240v-80h720v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Zm0-200v-80h480v80H120Z"/></svg>',
-        '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="M240-240v-80h480v80H240Zm-120-200v-80h720v80H120Zm120-200v-80h480v80H240Zm-120-200v-80h720v80H120Z"/></svg>',
-        '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="M120-240v-80h720v80H120Zm240-200v-80h480v80H360Zm-240-200v-80h720v80H120Zm240-200v-80h480v80H360Z"/></svg>',
-      ]
-    };
-  },
-  computed: {
-    tabs() {
-      const tabList = ['Lyrics'];
-      if (this.vocab && this.vocab.length > 0) {
-        tabList.push('Vocabulary');
+const route = useRoute();
+const song = ref<SongInfo | null>(null);
+const lyrics = ref<SongLyric[] | null>(null);
+const vocab = ref<string[] | null>(null);
+const language = ref('');
+const engLyricsIdx = ref(0);
+const fontSizeIdx = ref(1);
+const textAlignIdx = ref(0);
+
+const alignmentOptions = [
+  '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="M120-240v-80h720v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Zm0-200v-80h480v80H120Z"/></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="M240-240v-80h480v80H240Zm-120-200v-80h720v80H120Zm120-200v-80h480v80H240Zm-120-200v-80h720v80H120Z"/></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="M120-240v-80h720v80H120Zm240-200v-80h480v80H360Zm-240-200v-80h720v80H120Zm240-200v-80h480v80H360Z"/></svg>',
+];
+
+const tabs = computed(() => {
+  const tabList = ['Lyrics'];
+  if (vocab.value && vocab.value.length > 0) {
+    tabList.push('Vocabulary');
+  }
+  return tabList;
+});
+
+const fontSizeClass = computed(() => ({
+  'font-small': fontSizeIdx.value === 0,
+  'font-medium': fontSizeIdx.value === 1,
+  'font-large': fontSizeIdx.value === 2,
+}));
+
+const textAlignClass = computed(() => ({
+  'text-left': textAlignIdx.value === 0,
+  'text-center': textAlignIdx.value === 1,
+  'text-right': textAlignIdx.value === 2,
+}));
+
+onMounted(async () => {
+  try {
+    const songId = route.params.id as string;
+    language.value = route.params.language as string;
+
+    const fetchedSong = await fetchSongById(songId);
+    if (fetchedSong) {
+      song.value = fetchedSong;
+
+      const lyricsAndVocab = await fetchLyricsById(songId, language.value);
+      if (lyricsAndVocab) {
+        lyrics.value = lyricsAndVocab.lyrics;
+        vocab.value = lyricsAndVocab.vocab;
       }
-      return tabList;
-    },
-    fontSizeClass(): Record<string, boolean> {
-      return {
-        fontSmall: this.fontSizeIdx == 0,
-        fontMedium: this.fontSizeIdx == 1,
-        fontLarge: this.fontSizeIdx == 2,
-      };
-    },
-    textAlignClass(): Record<string, boolean> {
-      return {
-        'align-left': this.textAlignIdx === 0,
-        'align-center': this.textAlignIdx === 1,
-        'align-right': this.textAlignIdx === 2,
-      };
-    },
-  },
-  methods: {
-    async fetchData() {
-      try {
-        const songId = this.$route.params.id as string;
-        this.language = this.$route.params.language as string;
-
-        const fetchedSong = await fetchSongById(songId);
-        if (fetchedSong) {
-          this.song = fetchedSong;
-
-          const lyricsAndVocab = await fetchLyricsById(songId, this.language);
-
-          if (lyricsAndVocab) {
-            this.lyrics = lyricsAndVocab.lyrics;
-            this.vocab = lyricsAndVocab.vocab;
-          }
-        }
-      } catch (error) {
-        console.error('Error in fetchData:', error);
-      }
-    },
-  },
-  created() {
-    this.fetchData();
-  },
+    }
+  } catch (error) {
+    console.error('Error in fetchData:', error);
+  }
 });
 </script>
 
 <style scoped>
-.song-details-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-  min-height: 100vh;
-}
-
-.song-details-container {
-  width: 100%;
-  max-width: 800px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.container-padding {
-  padding: 20px;
-}
-
-.back-button {
-  margin-bottom: 20px;
-  /* Adjust the value to control space */
-  font-size: 16px;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.back-button:hover {
-  background-color: #e0e0e0;
-}
-
-.back-button:active {
-  background-color: #d0d0d0;
-}
-
 .widget-container {
-  display: flex;
-  justify-content: center;
   width: 100%;
-  margin-top: 0px;
-  margin-bottom: 20px;
-}
-
-.widget-wrap {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.loading {
-  text-align: center;
-  font-size: 18px;
-  color: #666;
-}
-
-h2 {
-  margin-bottom: 16px;
-  font-size: 1.5rem;
-  color: #333;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.fontSmall {
-  font-size: 0.8rem;
-  line-height: 1.2;
-}
-
-.fontMedium {
-  font-size: 1rem;
-  line-height: 1.3;
-}
-
-.fontLarge {
-  font-size: 1.2rem;
-  line-height: 1.4;
 }
 
 .line-container {
@@ -269,36 +161,26 @@ body {
   font-size: 1.2em;
 }
 
-.fontSmall .text {
+.font-small .text {
   font-size: 1em;
 }
 
-.fontMedium .text {
+.font-medium .text {
   font-size: 1.2em;
 }
 
-.fontLarge .text {
+.font-large .text {
   font-size: 1.4em;
 }
 
-.align-left {
-  text-align: left;
-}
-.align-center {
-  text-align: center;
-}
-.align-right {
-  text-align: right;
-}
-
 /* This will align the chinese characters */
-.align-left .chinese-line {
+.text-left .chinese-line {
   justify-content: flex-start;
 }
-.align-center .chinese-line {
+.text-center .chinese-line {
   justify-content: center;
 }
-.align-right .chinese-line {
+.text-right .chinese-line {
   justify-content: flex-end;
 }
 </style>
