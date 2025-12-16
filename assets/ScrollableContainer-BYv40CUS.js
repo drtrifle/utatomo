@@ -1,1 +1,0 @@
-import{d as o,_ as t,c as s,r as a,o as n}from"./index-C-tLxhSA.js";const r=o({props:{maxHeight:{type:String,default:"400px"}}}),c={class:"scrollable-container"};function d(e,l,p,i,_,f){return n(),s("div",c,[a(e.$slots,"default",{},void 0)])}const u=t(r,[["render",d],["__scopeId","data-v-2d12555e"]]);export{u as default};
