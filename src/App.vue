@@ -1,10 +1,10 @@
 <template>
-  <v-app>
+  <div id="app">
     <AppHeader />
-    <v-main>
+    <main class="main-content">
       <router-view />
-    </v-main>
-  </v-app>
+    </main>
+  </div>
 </template>
 
 <script lang="ts">
@@ -20,4 +20,14 @@ export default defineComponent({
 </script>
 
 <style>
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+}
 </style>

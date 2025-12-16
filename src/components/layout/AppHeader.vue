@@ -1,93 +1,150 @@
 <!-- components/layout/AppHeader.vue -->
 <template>
-  <v-app-bar>
-    <v-toolbar-title>
-      <router-link to="/" class="logo-link">
-        <span class="brand">UtaTomo</span>
-      </router-link>
-    </v-toolbar-title>
-
-    <v-spacer></v-spacer>
-
-    <!-- Desktop Navigation -->
-    <div class="d-none d-md-flex">
-      <v-btn variant="text" to="/">Home</v-btn>
-      <v-btn variant="text" to="/songs">Songs</v-btn>
-      <v-btn variant="text" to="/about">About</v-btn>
-    </div>
-
-    <v-btn icon @click="toggleTheme">
-      <v-icon>{{ isDark ? 'mdi-weather-night' : 'mdi-weather-sunny' }}</v-icon>
-    </v-btn>
-
-    <!-- Mobile Navigation Toggle -->
-    <v-app-bar-nav-icon class="d-md-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-  </v-app-bar>
+    <header class="app-header">
+      <div class="header-content">
+        <!-- Logo Section -->
+        <router-link to="/" class="logo">
+          <span class="brand">UtaTomo</span>
+          <small>Learn Through Music</small>
+        </router-link>
   
-  <!-- Mobile Navigation Drawer -->
-  <v-navigation-drawer v-model="drawer" temporary location="right">
-    <v-list>
-      <v-list-item to="/" @click="drawer = false">
-        <v-list-item-title>Home</v-list-item-title>
-      </v-list-item>
-      <v-list-item to="/songs" @click="drawer = false">
-        <v-list-item-title>Songs</v-list-item-title>
-      </v-list-item>
-      <v-list-item to="/about" @click="drawer = false">
-        <v-list-item-title>About</v-list-item-title>
-      </v-list-item>
-    </v-list>
-  </v-navigation-drawer>
-</template>
-
+        <!-- Navigation Links -->
+        <nav class="nav-links">
+          <router-link to="/">Home</router-link>
+          <router-link to="/songs">Songs</router-link>
+          <router-link to="/about">About</router-link>
+        </nav>
+  
+        <!-- Mobile Menu Toggle -->
+        <button 
+          class="menu-toggle"
+          @click="isMobileMenuOpen = !isMobileMenuOpen"
+          aria-label="Toggle navigation menu"
+        >
+          ☰
+        </button>
+      </div>
+  
+      <!-- Mobile Menu (Dropdown) -->
+      <transition name="slide-down">
+        <nav v-if="isMobileMenuOpen" class="mobile-nav">
+          <router-link to="/" @click="isMobileMenuOpen = false">Home</router-link>
+          <router-link to="/songs" @click="isMobileMenuOpen = false">Songs</router-link>
+          <router-link to="/about" @click="isMobileMenuOpen = false">About</router-link>
+        </nav>
+      </transition>
+    </header>
+  </template>
+  
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useTheme } from 'vuetify';
 
 export default defineComponent({
-  name: 'AppHeader',
-  setup() {
-    const theme = useTheme();
-    return { theme };
-  },
-  data() {
-    return {
-      drawer: false as boolean
-    };
-  },
-  computed: {
-    isDark(): boolean {
-      return this.$vuetify.theme.global.current.dark;
+    name: 'AppHeader',
+    data() {
+      return {
+      isMobileMenuOpen: false as boolean
+      };
+    },
+    watch: {
+      // Close mobile menu when route changes
+      $route() {
+        this.isMobileMenuOpen = false;
+      }
     }
-  },
-  methods: {
-    toggleTheme() {
-      const newTheme = this.$vuetify.theme.global.current.dark ? 'light' : 'dark';
-      this.theme.change(newTheme);
-      localStorage.setItem('theme', newTheme);
+});
+  </script>
+  
+  <style scoped>
+  .app-header {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo {
+    text-decoration: none;
+    color: #2c3e50;
+  }
+  .brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: block;
+  }
+  .brand small {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #7f8c8d;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: #34495e;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover,
+  .nav-links a.router-link-exact-active {
+    color: #007bff;
+  }
+  
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: white;
+    padding: 1rem;
+    border-top: 1px solid #eee;
+  }
+  .mobile-nav a {
+    padding: 0.5rem 0;
+    text-decoration: none;
+    color: #34495e;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
     }
-  },
-  watch: {
-    $route() {
-      this.drawer = false;
+    .menu-toggle {
+      display: block;
     }
-  },
-  mounted() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      this.theme.change(savedTheme);
+    .mobile-nav {
+      display: flex;
     }
   }
-});
-</script>
-
-<style scoped>
-.logo-link {
-  text-decoration: none;
-  color: inherit;
-}
-.brand {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-</style>
+  
+  /* Animation */
+  .slide-down-enter-active,
+  .slide-down-leave-active {
+    transition: all 0.3s ease;
+  }
+  .slide-down-enter-from,
+  .slide-down-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  </style>

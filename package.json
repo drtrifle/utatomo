@@ -13,12 +13,10 @@
     "test:ui": "vitest --ui"
   },
   "dependencies": {
-    "@mdi/font": "^7.4.47",
     "core-js": "^3.8.3",
     "segmentit": "^2.0.3",
     "vue": "^3.2.13",
-    "vue-router": "^4.5.0",
-    "vuetify": "^3.11.3"
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@types/node": "^24.2.1",
