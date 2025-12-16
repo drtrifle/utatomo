@@ -1,150 +1,81 @@
 <!-- components/layout/AppHeader.vue -->
 <template>
-    <header class="app-header">
-      <div class="header-content">
-        <!-- Logo Section -->
-        <router-link to="/" class="logo">
-          <span class="brand">UtaTomo</span>
-          <small>Learn Through Music</small>
-        </router-link>
-  
-        <!-- Navigation Links -->
-        <nav class="nav-links">
-          <router-link to="/">Home</router-link>
-          <router-link to="/songs">Songs</router-link>
-          <router-link to="/about">About</router-link>
-        </nav>
-  
+  <header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="container flex h-14 items-center">
+      <!-- Logo Section -->
+      <router-link to="/" class="mr-6 flex items-center space-x-2">
+        <span class="hidden font-bold sm:inline-block">UtaTomo</span>
+        <small class="hidden text-muted-foreground sm:inline-block">Learn Through Music</small>
+      </router-link>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+        <router-link to="/" class="transition-colors hover:text-foreground/80 text-muted-foreground">Home</router-link>
+        <router-link to="/songs" class="transition-colors hover:text-foreground/80 text-muted-foreground">Songs</router-link>
+        <router-link to="/about" class="transition-colors hover:text-foreground/80 text-muted-foreground">About</router-link>
+      </nav>
+
+      <div class="flex flex-1 items-center justify-end">
         <!-- Mobile Menu Toggle -->
-        <button 
-          class="menu-toggle"
+        <Button
+          variant="ghost"
+          class="md:hidden"
           @click="isMobileMenuOpen = !isMobileMenuOpen"
           aria-label="Toggle navigation menu"
         >
-          ☰
-        </button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <span class="sr-only">Toggle Menu</span>
+        </Button>
       </div>
-  
-      <!-- Mobile Menu (Dropdown) -->
-      <transition name="slide-down">
-        <nav v-if="isMobileMenuOpen" class="mobile-nav">
-          <router-link to="/" @click="isMobileMenuOpen = false">Home</router-link>
-          <router-link to="/songs" @click="isMobileMenuOpen = false">Songs</router-link>
-          <router-link to="/about" @click="isMobileMenuOpen = false">About</router-link>
+    </div>
+
+    <!-- Mobile Menu (Dropdown) -->
+    <transition name="slide-down">
+        <nav v-if="isMobileMenuOpen" class="md:hidden flex flex-col space-y-2 p-4 bg-background border-t">
+          <router-link to="/" class="py-2" @click="isMobileMenuOpen = false">Home</router-link>
+          <router-link to="/songs" class="py-2" @click="isMobileMenuOpen = false">Songs</router-link>
+          <router-link to="/about" class="py-2" @click="isMobileMenuOpen = false">About</router-link>
         </nav>
-      </transition>
-    </header>
-  </template>
-  
+    </transition>
+  </header>
+</template>
+
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { Button } from '@/components/ui/button';
 
 export default defineComponent({
-    name: 'AppHeader',
-    data() {
-      return {
+  name: 'AppHeader',
+  components: {
+    Button,
+  },
+  data() {
+    return {
       isMobileMenuOpen: false as boolean
-      };
-    },
-    watch: {
-      // Close mobile menu when route changes
-      $route() {
-        this.isMobileMenuOpen = false;
-      }
+    };
+  },
+  watch: {
+    // Close mobile menu when route changes
+    $route() {
+      this.isMobileMenuOpen = false;
     }
+  }
 });
-  </script>
-  
-  <style scoped>
-  .app-header {
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .logo {
-    text-decoration: none;
-    color: #2c3e50;
-  }
-  .brand {
-    font-size: 1.5rem;
-    font-weight: 600;
-    display: block;
-  }
-  .brand small {
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: #7f8c8d;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-  }
-  .nav-links a {
-    text-decoration: none;
-    color: #34495e;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
-  .nav-links a:hover,
-  .nav-links a.router-link-exact-active {
-    color: #007bff;
-  }
-  
-  .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  .mobile-nav {
-    display: none;
-    flex-direction: column;
-    background: white;
-    padding: 1rem;
-    border-top: 1px solid #eee;
-  }
-  .mobile-nav a {
-    padding: 0.5rem 0;
-    text-decoration: none;
-    color: #34495e;
-  }
-  
-  /* Mobile Responsiveness */
-  @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-    }
-    .menu-toggle {
-      display: block;
-    }
-    .mobile-nav {
-      display: flex;
-    }
-  }
-  
-  /* Animation */
-  .slide-down-enter-active,
-  .slide-down-leave-active {
-    transition: all 0.3s ease;
-  }
-  .slide-down-enter-from,
-  .slide-down-leave-to {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  </style>
+</script>
+
+<style scoped>
+nav a.router-link-exact-active {
+  @apply text-foreground;
+}
+
+/* Animation */
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+.slide-down-enter-from,
+.slide-down-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+</style>

@@ -1,54 +1,70 @@
 <template>
-  <div class="song-details-page">
-    <button @click="$router.push('/songs')" class="back-button">← Back to Songs</button>
+  <div class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto py-8">
+      <Button @click="$router.push('/songs')" variant="outline" class="mb-4">← Back to Songs</Button>
 
-    <div v-if="song" class="song-details-container">
-      <div class="container-padding">
-        <!-- Sticky Video -->
+      <div v-if="song" class="bg-white rounded-lg shadow-lg overflow-hidden">
         <StickyVideo :youtubeUrl="song.youtubeUrl" />
 
-        <!-- Tabs for Lyrics and Vocab -->
-        <TabContainer :tabs="tabs" v-if="lyrics">
-          <template #tab-0>
-            <!-- Widget Container -->
-            <div class="widget-container">
-              <div class="widget-wrap">
-                <ToggleWidget header="English Lyrics" :options="['On', 'Off']" v-model="engLyricsIdx" />
-                <ToggleWidget header="Font Size" :options="['S', 'M', 'L']" v-model="fontSizeIdx" />
-                <ToggleWidget header="Alignment" :options="alignmentOptions" v-model="textAlignIdx" />
-              </div>
-            </div>
-            <ScrollableContainer :maxHeight="'calc(100vh - 450px)'">
-              <div v-if="lyrics">
-                <div v-for="(line, index) in lyrics" :key="index" :class="[fontSizeClass, textAlignClass]">
-                  <div v-if="!line.isEmpty()">
-                    <div class="line-container">
-                      <div class="chinese-line">
-                        <template v-for="(segment, idx) in line.getAnnotatedText()" :key="idx">
-                          <div class="char-container">
-                            <span class="ruby">{{ segment.ruby }}</span>
-                            <span class="text">{{ segment.text }}</span>
-                          </div>
-                        </template>
-                      </div>
-                      <small v-if="engLyricsIdx == 0">{{ line.EngStr }}</small>
-                    </div>
+        <div class="p-6">
+          <TabContainer :tabs="tabs" v-if="lyrics">
+            <template #tab-0>
+              <div class="flex justify-center my-4">
+                <div class="flex flex-wrap gap-4">
+                  <div class="flex flex-col items-center">
+                    <Label class="mb-2 text-sm font-medium">English Lyrics</Label>
+                    <ToggleGroup v-model="engLyrics" type="single" variant="outline">
+                      <ToggleGroupItem value="on">On</ToggleGroupItem>
+                      <ToggleGroupItem value="off">Off</ToggleGroupItem>
+                    </ToggleGroup>
                   </div>
-                  <div v-else>&nbsp;</div>
+                  <div class="flex flex-col items-center">
+                    <Label class="mb-2 text-sm font-medium">Font Size</Label>
+                    <ToggleGroup v-model="fontSize" type="single" variant="outline">
+                      <ToggleGroupItem value="sm">S</ToggleGroupItem>
+                      <ToggleGroupItem value="md">M</ToggleGroupItem>
+                      <ToggleGroupItem value="lg">L</ToggleGroupItem>
+                    </ToggleGroup>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <Label class="mb-2 text-sm font-medium">Alignment</Label>
+                    <ToggleGroup v-model="textAlign" type="single" variant="outline">
+                      <ToggleGroupItem value="left" v-html="alignmentOptions[0]"></ToggleGroupItem>
+                      <ToggleGroupItem value="center" v-html="alignmentOptions[1]"></ToggleGroupItem>
+                      <ToggleGroupItem value="right" v-html="alignmentOptions[2]"></ToggleGroupItem>
+                    </ToggleGroup>
+                  </div>
                 </div>
               </div>
-            </ScrollableContainer>
-          </template>
-          <template #tab-1>
-            <VocabList v-if="vocab" :vocab="vocab" :language="language" />
-          </template>
-        </TabContainer>
-        <p v-else class="loading">Loading lyrics...</p>
+              <ScrollableContainer :maxHeight="'calc(100vh - 450px)'">
+                <div v-if="lyrics" :class="[fontSizeClass, textAlignClass]">
+                  <div v-for="(line, index) in lyrics" :key="index">
+                    <div v-if="!line.isEmpty()" class="mb-2">
+                      <div class="flex flex-wrap gap-1" :class="textAlignClass">
+                        <div v-for="(segment, idx) in line.getAnnotatedText()" :key="idx" class="inline-flex flex-col items-center">
+                          <span class="text-xs text-muted-foreground">{{ segment.ruby }}</span>
+                          <span class="text-lg">{{ segment.text }}</span>
+                        </div>
+                      </div>
+                      <small v-if="engLyrics === 'on'" class="text-muted-foreground">{{ line.EngStr }}</small>
+                    </div>
+                    <div v-else>&nbsp;</div>
+                  </div>
+                </div>
+              </ScrollableContainer>
+            </template>
+            <template #tab-1>
+              <VocabList v-if="vocab" :vocab="vocab" :language="language" />
+            </template>
+          </TabContainer>
+          <div v-else class="text-center p-8">
+            <LoadingSpinner message="Loading lyrics..." />
+          </div>
+        </div>
       </div>
-    </div>
-    <div v-else>
-      <!-- LoadingSpinner -->
-      <LoadingSpinner message="Loading song details..."/>
+      <div v-else class="text-center p-8">
+        <LoadingSpinner message="Loading song details..." />
+      </div>
     </div>
   </div>
 </template>
@@ -60,30 +76,25 @@ import { SongInfo } from '../models/SongInfo';
 import { SongLyric } from '../models/SongLyric';
 
 import LoadingSpinner from '@/components/widgets/LoadingSpinner.vue';
-const StickyVideo = defineAsyncComponent(() =>
-  import('../components/StickyVideo.vue')
-);
-const ScrollableContainer = defineAsyncComponent(() =>
-  import('../components/ScrollableContainer.vue')
-);
-const ToggleWidget = defineAsyncComponent(() =>
-  import('../components/widgets/ToggleWidget.vue')
-);
-const TabContainer = defineAsyncComponent(() =>
-  import('../components/TabContainer.vue')
-);
-const VocabList = defineAsyncComponent(() =>
-  import('../components/VocabList.vue')
-);
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+const StickyVideo = defineAsyncComponent(() => import('../components/StickyVideo.vue'));
+const ScrollableContainer = defineAsyncComponent(() => import('../components/ScrollableContainer.vue'));
+const TabContainer = defineAsyncComponent(() => import('../components/TabContainer.vue'));
+const VocabList = defineAsyncComponent(() => import('../components/VocabList.vue'));
 
 export default defineComponent({
   components: {
     StickyVideo,
     ScrollableContainer,
-    ToggleWidget,
     LoadingSpinner,
     TabContainer,
     VocabList,
+    Button,
+    Label,
+    ToggleGroup,
+    ToggleGroupItem,
   },
   data() {
     return {
@@ -91,9 +102,9 @@ export default defineComponent({
       lyrics: null as SongLyric[] | null,
       vocab: null as string[] | null,
       language: '' as string,
-      engLyricsIdx: 0,
-      fontSizeIdx: 1,
-      textAlignIdx: 0,
+      engLyrics: 'on',
+      fontSize: 'md',
+      textAlign: 'left',
       alignmentOptions: [
         '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="M120-240v-80h720v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Zm0-200v-80h480v80H120Z"/></svg>',
         '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="M240-240v-80h480v80H240Zm-120-200v-80h720v80H120Zm120-200v-80h480v80H240Zm-120-200v-80h720v80H120Z"/></svg>',
@@ -109,19 +120,19 @@ export default defineComponent({
       }
       return tabList;
     },
-    fontSizeClass(): Record<string, boolean> {
-      return {
-        fontSmall: this.fontSizeIdx == 0,
-        fontMedium: this.fontSizeIdx == 1,
-        fontLarge: this.fontSizeIdx == 2,
-      };
+    fontSizeClass(): string {
+      switch (this.fontSize) {
+        case 'sm': return 'text-sm';
+        case 'lg': return 'text-lg';
+        default: return 'text-base';
+      }
     },
-    textAlignClass(): Record<string, boolean> {
-      return {
-        'align-left': this.textAlignIdx === 0,
-        'align-center': this.textAlignIdx === 1,
-        'align-right': this.textAlignIdx === 2,
-      };
+    textAlignClass(): string {
+      switch (this.textAlign) {
+        case 'center': return 'justify-center text-center';
+        case 'right': return 'justify-end text-right';
+        default: return 'justify-start text-left';
+      }
     },
   },
   methods: {
@@ -151,154 +162,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.song-details-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-  min-height: 100vh;
-}
-
-.song-details-container {
-  width: 100%;
-  max-width: 800px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.container-padding {
-  padding: 20px;
-}
-
-.back-button {
-  margin-bottom: 20px;
-  /* Adjust the value to control space */
-  font-size: 16px;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.back-button:hover {
-  background-color: #e0e0e0;
-}
-
-.back-button:active {
-  background-color: #d0d0d0;
-}
-
-.widget-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 0px;
-  margin-bottom: 20px;
-}
-
-.widget-wrap {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.loading {
-  text-align: center;
-  font-size: 18px;
-  color: #666;
-}
-
-h2 {
-  margin-bottom: 16px;
-  font-size: 1.5rem;
-  color: #333;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.fontSmall {
-  font-size: 0.8rem;
-  line-height: 1.2;
-}
-
-.fontMedium {
-  font-size: 1rem;
-  line-height: 1.3;
-}
-
-.fontLarge {
-  font-size: 1.2rem;
-  line-height: 1.4;
-}
-
-.line-container {
-  margin: 0.5em 0;
-}
-
-.chinese-line {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 0.5em;
-}
-
-.char-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 1em;
-}
-
-.ruby {
-  font-size: 0.7em;
-  color: #666;
-  height: 1.2em;
-  text-align: center;
-}
-
-.text {
-  font-size: 1.2em;
-}
-
-.fontSmall .text {
-  font-size: 1em;
-}
-
-.fontMedium .text {
-  font-size: 1.2em;
-}
-
-.fontLarge .text {
-  font-size: 1.4em;
-}
-
-.align-left {
-  text-align: left;
-}
-.align-center {
-  text-align: center;
-}
-.align-right {
-  text-align: right;
-}
-
-/* This will align the chinese characters */
-.align-left .chinese-line {
-  justify-content: flex-start;
-}
-.align-center .chinese-line {
-  justify-content: center;
-}
-.align-right .chinese-line {
-  justify-content: flex-end;
-}
-</style>
