@@ -1,157 +1,153 @@
 <template>
-    <div>
-        <h1>Song List</h1>
-        <div :class="styles.controls">
-            <input type="text" v-model="searchTerm" placeholder="Search by song, artist, language or tag" :class="styles.searchInput" />
-            <div :class="styles.sortContainer">
-                <div class="sort-dropdown">
-                    <button @click="toggleSortDropdown" :class="styles.sortButton">Sort: {{ sortByText }}</button>
-                    <div v-if="isSortDropdownOpen" :class="styles.dropdownContent">
-                        <a href="#" @click.prevent="setSortBy('artist')">Artist</a>
-                        <a href="#" @click.prevent="setSortBy('title')">Title</a>
-                    </div>
-                </div>
-                <button @click="toggleSortOrder" :class="styles.sortOrderButton">
-                    <span v-if="sortOrder === 'asc'">↑</span>
-                    <span v-else>↓</span>
-                </button>
-            </div>
+  <v-container>
+    <h1 class="text-h4 mb-4">Song List</h1>
+    <v-row>
+      <v-col cols="12" md="6">
+        <v-text-field
+          v-model="searchTerm"
+          label="Search by song, artist, language or tag"
+          dense
+          outlined
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12" md="6" class="d-flex">
+        <v-select
+          v-model="sortBy"
+          :items="sortOptions"
+          label="Sort by"
+          dense
+          outlined
+          class="mr-2"
+        ></v-select>
+        <v-btn icon @click="toggleSortOrder">
+          <v-icon>{{ sortOrder === 'asc' ? 'mdi-arrow-up' : 'mdi-arrow-down' }}</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
+
+    <v-data-table
+      :headers="headers"
+      :items="filteredAndSortedSongs"
+      :items-per-page="-1"
+      class="elevation-1"
+      @click:row="goToSongDetails"
+      hover
+    >
+      <template #[`item.title`]="{ item }">
+        <div class="d-flex align-center py-2">
+          <v-img
+            :src="item.getThumbnailUrl()"
+            alt="Thumbnail"
+            class="mr-4"
+            width="50"
+            height="50"
+            cover
+          ></-img>
+          <div>
+            <div class="font-weight-bold">{{ item.title }}</div>
+            <div class="text-caption">{{ item.artist }}</div>
+          </div>
         </div>
-        <table :class="styles.songTable">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Duration</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(song, index) in filteredAndSortedSongs" :key="song.id" @click="goToSongDetails(song)">
-                    <td>{{ index + 1 }}</td>
-                    <td :class="styles.songTitle">
-                        <img :src="song.getThumbnailUrl()" alt="Thumbnail" :class="styles.thumbnail" />
-                        <div :class="styles.titleInfo">
-                            <div :class="styles.title">{{ song.title }}</div>
-                            <div :class="styles.artist">{{ song.artist }}</div>
-                        </div>
-                    </td>
-                    <td>{{ song.duration }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <div v-if="filteredAndSortedSongs.length === 0" :class="styles.noResults">
-            No results found
-        </div>
-        <router-link to="/">Go Back to Home</router-link>
-    </div>
+      </template>
+
+      <template #bottom></template>
+    </v-data-table>
+
+    <v-alert v-if="filteredAndSortedSongs.length === 0" type="info" class="mt-4">
+      No results found
+    </v-alert>
+
+    <v-btn to="/" color="primary" class="mt-4">Go Back to Home</v-btn>
+  </v-container>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref, computed, onMounted, watch } from 'vue';
+import { useRouter } from 'vue-router';
 import { SongInfo } from '../models/SongInfo';
 import { fetchSongInfos } from '../services/songService';
-import styles from '../styles/songList.module.css'; // Import the CSS Module
 
-export default defineComponent({
-    name: 'SongListPage',
-    data() {
-        return {
-            songInfos: [] as SongInfo[],
-            searchTerm: '',
-            debouncedSearchTerm: '',
-            sortBy: 'artist', // 'artist' or 'title'
-            sortOrder: 'asc', // 'asc' or 'desc'
-            isSortDropdownOpen: false,
-            debounceTimer: -1,
-        };
-    },
-    watch: {
-        searchTerm(newValue: string) {
-            if (this.debounceTimer) {
-                clearTimeout(this.debounceTimer);
-            }
-            this.debounceTimer = window.setTimeout(() => {
-                this.debouncedSearchTerm = newValue;
-            }, 300);
-        },
-    },
-    async created() {
-        this.songInfos = await fetchSongInfos();
-        window.addEventListener('click', this.closeSortDropdownOnClickOutside);
-    },
-    beforeUnmount() {
-        window.removeEventListener('click', this.closeSortDropdownOnClickOutside);
-    },
-    methods: {
-        goToSongDetails(song: SongInfo) {
-            this.$router.push(`/songs/${song.language}/${song.id}`);
-        },
-        toggleSortDropdown() {
-            this.isSortDropdownOpen = !this.isSortDropdownOpen;
-        },
-        closeSortDropdownOnClickOutside(event: MouseEvent) {
-            const dropdown = this.$el.querySelector('.sort-dropdown');
-            if (dropdown && !dropdown.contains(event.target)) {
-                this.isSortDropdownOpen = false;
-            }
-        },
-        setSortBy(criteria: 'artist' | 'title') {
-            this.sortBy = criteria;
-            this.isSortDropdownOpen = false;
-        },
-        toggleSortOrder() {
-            this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
-        },
-    },
-    computed: {
-        styles() {
-            return styles;
-        },
-        sortByText(): string {
-            return this.sortBy.charAt(0).toUpperCase() + this.sortBy.slice(1);
-        },
-        filteredAndSortedSongs(): SongInfo[] {
-            let filtered = this.songInfos;
+const songInfos = ref<SongInfo[]>([]);
+const searchTerm = ref('');
+const debouncedSearchTerm = ref('');
+const sortBy = ref('artist');
+const sortOrder = ref('asc');
+const debounceTimer = ref(-1);
 
-            if (this.debouncedSearchTerm) {
-                const lowerCaseSearchTerm = this.debouncedSearchTerm.toLowerCase();
-                filtered = this.songInfos.filter(song =>
-                    song.title.toLowerCase().includes(lowerCaseSearchTerm) ||
-                    song.artist.toLowerCase().includes(lowerCaseSearchTerm) ||
-                    song.language.toLowerCase().includes(lowerCaseSearchTerm) ||
-                    (song.tags && song.tags.some(tag => tag.toLowerCase().includes(lowerCaseSearchTerm)))
-                );
-            }
+const router = useRouter();
 
-            const sorted = [...filtered].sort((a, b) => {
-                let aValue: string;
-                let bValue: string;
+const sortOptions = [
+  { title: 'Artist', value: 'artist' },
+  { title: 'Title', value: 'title' },
+];
 
-                if (this.sortBy === 'artist') {
-                    aValue = a.artist.toLowerCase();
-                    bValue = b.artist.toLowerCase();
-                } else {
-                    aValue = a.title.toLowerCase();
-                    bValue = b.title.toLowerCase();
-                }
+import { VDataTable } from 'vuetify/components';
 
-                if (aValue < bValue) {
-                    return this.sortOrder === 'asc' ? -1 : 1;
-                }
-                if (aValue > bValue) {
-                    return this.sortOrder === 'asc' ? 1 : -1;
-                }
+const headers: VDataTable['$props']['headers'] = [
+  { title: '#', value: 'index', sortable: false },
+  { title: 'Title', value: 'title', sortable: false },
+  { title: 'Duration', value: 'duration', sortable: false, align: 'end' },
+];
 
-                // Secondary sort by title if artists are the same, and vice-versa
-                if (this.sortBy === 'artist') {
-                    return a.title.localeCompare(b.title);
-                } else {
-                    return a.artist.localeCompare(b.artist);
-                }
-            });
+watch(searchTerm, (newValue: string) => {
+  if (debounceTimer.value) {
+    clearTimeout(debounceTimer.value);
+  }
+  debounceTimer.value = window.setTimeout(() => {
+    debouncedSearchTerm.value = newValue;
+  }, 300);
+});
 
-            return sorted;
-        },
-    },
+onMounted(async () => {
+  songInfos.value = await fetchSongInfos();
+});
+
+const goToSongDetails = (
+  _event: Event,
+  { item }: { item: { raw: SongInfo } }
+) => {
+  const song = item.raw;
+  router.push(`/songs/${song.language}/${song.id}`);
+};
+
+const toggleSortOrder = () => {
+  sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
+};
+
+const filteredAndSortedSongs = computed(() => {
+  let filtered = songInfos.value;
+
+  if (debouncedSearchTerm.value) {
+    const lowerCaseSearchTerm = debouncedSearchTerm.value.toLowerCase();
+    filtered = songInfos.value.filter(song =>
+      song.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+      song.artist.toLowerCase().includes(lowerCaseSearchTerm) ||
+      song.language.toLowerCase().includes(lowerCaseSearchTerm) ||
+      (song.tags && song.tags.some(tag => tag.toLowerCase().includes(lowerCaseSearchTerm)))
+    );
+  }
+
+  const sorted = [...filtered].sort((a, b) => {
+    let aValue = a[sortBy.value as keyof SongInfo] as string;
+    let bValue = b[sortBy.value as keyof SongInfo] as string;
+
+    if (aValue.toLowerCase() < bValue.toLowerCase()) {
+      return sortOrder.value === 'asc' ? -1 : 1;
+    }
+    if (aValue.toLowerCase() > bValue.toLowerCase()) {
+      return sortOrder.value === 'asc' ? 1 : -1;
+    }
+
+    if (sortBy.value === 'artist') {
+      return a.title.localeCompare(b.title);
+    } else {
+      return a.artist.localeCompare(b.artist);
+    }
+  });
+
+  return sorted.map((song, index) => ({
+    ...song,
+    index: index + 1,
+  }));
 });
 </script>
